@@ -1,0 +1,25 @@
+# --- Secrets / credentials: NEVER commit to a public repo ---
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*secret*
+*credential*
+*service-account*.json
+*serviceAccount*.json
+id_rsa*
+
+# --- System / editor cruft ---
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# --- If build tooling is ever added here ---
+node_modules/
+dist/
+.cache/
+*.log
