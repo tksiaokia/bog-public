@@ -1076,12 +1076,31 @@ function statsFromTotal(total){
     nextMilestone: FALLBACK_LADDER.filter(function(m){ return total<m.at; })[0] || null
   };
 }
-// Render immediately with the fallback so the tracker always shows.
-let lastStats = statsFromTotal(FALLBACK_BASELINE);
+// Render immediately with the LAST-SEEN total (persisted) so a refresh shows the same number the
+// visitor last saw — no 43,000→43,005 "blink" when the live /api/stats resolves. First-ever visit
+// falls back to the baseline.
+const _cachedTotal = parseInt(localStorage.getItem("bg_prereg_total") || "", 10);
+let lastStats = statsFromTotal(Number.isFinite(_cachedTotal) ? _cachedTotal : FALLBACK_BASELINE);
+
+// Animate the counter so any change is a smooth count-up, never an instant jump/blink.
+let displayedTotal = null;
+function setCount(target){
+  const el = document.getElementById("trackCount");
+  if(displayedTotal === null){ displayedTotal = target; el.textContent = fmtN(target); return; } // first paint: instant
+  if(target === displayedTotal){ return; }
+  const from = displayedTotal, to = target, start = performance.now(), dur = 700;
+  function tick(now){
+    const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmtN(Math.round(from + (to - from) * e));
+    if(p < 1) requestAnimationFrame(tick); else displayedTotal = to;
+  }
+  requestAnimationFrame(tick);
+}
+
 function renderTracker(){
   if(!lastStats || !lastStats.milestones){ trackerEl.classList.add("hidden"); return; }
   const d = dictNow();
-  document.getElementById("trackCount").textContent = fmtN(lastStats.total);
+  setCount(lastStats.total);
 
   // reward-icon ladder
   const ladder = document.getElementById("ladder");
@@ -1121,7 +1140,10 @@ async function loadStats(attempt){
     const r = await fetch(PREREG_API + "/api/stats", { mode:"cors", cache:"no-store" });
     if(!r.ok) throw new Error("bad status");
     const data = await r.json();
-    if(data && Array.isArray(data.milestones)){ lastStats = data; renderTracker(); }
+    if(data && Array.isArray(data.milestones)){
+      lastStats = data; renderTracker();
+      try{ localStorage.setItem("bg_prereg_total", String(data.total)); }catch(e){} // remember for next load
+    }
   }catch(e){
     // API slow/down → keep the fallback ladder (already rendered); retry a couple times.
     if((attempt||0) < 3) setTimeout(function(){ loadStats((attempt||0)+1); }, 2000*((attempt||0)+1));
