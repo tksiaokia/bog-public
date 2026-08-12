@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,13 +7,18 @@
 <meta name="application-name" content="Beyond God: Ascension">
 <meta name="author" content="Bublue Studio">
 <meta name="description" content="Beyond God: Ascension is a collect-and-battle mobile RPG by Bublue Studio. Summon legendary gods from four mythologies, build your team, and rise through a world at war.">
+<meta name="theme-color" content="#0b0a12">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Beyond God: Ascension">
 <meta property="og:title" content="Beyond God: Ascension">
 <meta property="og:description" content="A collect-and-battle mythology RPG by Bublue Studio. Summon legendary gods from four mythologies, build your team, and rise through a world at war.">
 <meta property="og:url" content="https://beyondgod.bubluestudio.com/">
 <meta property="og:image" content="https://beyondgod.bubluestudio.com/icon.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="./icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,61 +33,1112 @@
 }
 </script>
 <style>
-  :root { color-scheme: light dark; }
-  * { box-sizing: border-box; }
-  body { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px;
-         font: 16px/1.65 -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-  header { margin-bottom: 32px; }
-  .brand { display: flex; align-items: center; gap: 18px; }
-  .brand img { width: 88px; height: 88px; border-radius: 20px; flex: 0 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,.18); }
-  h1 { font-size: 30px; margin: 0 0 4px; }
-  .tagline { color: #888; font-size: 16px; margin: 0; }
-  .publisher { color: #888; font-size: 14px; margin: 6px 0 0; }
-  h2 { font-size: 20px; margin: 32px 0 8px; }
-  ul { padding-left: 22px; }
-  li { margin: 5px 0; }
-  .links { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(128,128,128,.3); }
-  .links a { display: inline-block; margin-right: 20px; }
-  a { color: #2a7ae2; }
-  footer { margin-top: 40px; color: #999; font-size: 13px; }
+:root{
+  --bg:#0a0910; --bg2:#0f0d18; --panel:#141122; --ink:#f3ecde; --muted:#9a93a8;
+  --gold:#e8c37a; --gold-deep:#c79a4b; --gold-soft:#f4dfae; --line:rgba(232,195,122,.18);
+  --greek:#5aa9e6; --norse:#7f8cff; --egypt:#e8b64a; --chinese:#e0655d;
+  --maxw:1180px; --nav-h:64px;
+  --display:"Cinzel", "Times New Roman", serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+/* CJK / Thai fall back to strong system faces for the display font */
+html[data-lang="zh-CN"],html[data-lang="zh-TW"]{--display:"PingFang SC","Microsoft YaHei","Noto Serif SC",serif;}
+html[data-lang="ja"]{--display:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;}
+html[data-lang="ko"]{--display:"Apple SD Gothic Neo","Malgun Gothic","Noto Serif KR",sans-serif;}
+html[data-lang="th"]{--display:"Sukhumvit Set","Thonburi","Noto Serif Thai",sans-serif;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.12;letter-spacing:.01em}
+::selection{background:var(--gold);color:#1a1408}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:100;
+  display:flex;align-items:center;gap:20px;padding:0 clamp(16px,4vw,40px);
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{background:rgba(10,9,16,.82);backdrop-filter:blur(14px) saturate(120%);border-bottom-color:var(--line)}
+.nav .logo{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:800;
+  font-size:17px;letter-spacing:.06em;color:var(--ink);white-space:nowrap}
+.nav .logo img{width:34px;height:34px;border-radius:9px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.nav .logo b{color:var(--gold)}
+.nav .links{display:flex;gap:6px;margin-left:auto}
+.nav .links a{color:var(--muted);font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.04em;
+  text-transform:uppercase;padding:8px 14px;border-radius:8px;transition:color .2s,background .2s}
+.nav .links a:hover{color:var(--gold-soft);background:rgba(232,195,122,.08)}
+.nav .right{display:flex;align-items:center;gap:10px;margin-left:10px}
+
+/* language switcher */
+.lang{position:relative}
+.lang-btn{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--line);
+  color:var(--ink);font-family:var(--sans);font-weight:600;font-size:14px;padding:8px 12px;border-radius:9px;cursor:pointer;
+  transition:border-color .2s,background .2s}
+.lang-btn:hover{border-color:var(--gold-deep);background:rgba(232,195,122,.08)}
+.lang-btn svg{width:16px;height:16px;opacity:.85}
+.lang-btn .chev{width:11px;height:11px;transition:transform .25s}
+.lang.open .lang-btn .chev{transform:rotate(180deg)}
+.lang-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:150px;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 20px 50px rgba(0,0,0,.55);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:.2s;list-style:none}
+.lang.open .lang-menu{opacity:1;visibility:visible;transform:none}
+.lang-menu li{padding:9px 12px;border-radius:8px;cursor:pointer;font-size:14.5px;color:var(--ink);
+  display:flex;justify-content:space-between;align-items:center;gap:10px}
+.lang-menu li:hover{background:rgba(232,195,122,.1)}
+.lang-menu li.active{color:var(--gold)}
+.lang-menu li.active::after{content:"✓";color:var(--gold)}
+
+.nav-cta{font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:#1a1408;background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));
+  padding:9px 16px;border-radius:9px;box-shadow:0 4px 16px rgba(199,154,75,.32);white-space:nowrap}
+.nav-cta:hover{filter:brightness(1.06)}
+
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:2px}
+.mobnav{display:none}
+.burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.25s}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:-8% 0 0 0;z-index:-2;background-size:cover;background-position:center 22%;
+  will-change:transform;transform:translateZ(0)}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 70% 20%,transparent 0%,rgba(10,9,16,.35) 45%,var(--bg) 92%),
+             linear-gradient(180deg,rgba(10,9,16,.55) 0%,rgba(10,9,16,.15) 30%,var(--bg) 98%)}
+.hero-grain{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background:linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px);width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:700;
+  font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  border:1px solid var(--line);border-radius:999px;padding:7px 15px;background:rgba(232,195,122,.06);
+  margin-bottom:26px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hero h1{font-size:clamp(40px,8.2vw,88px);font-weight:900;letter-spacing:.02em;
+  text-shadow:0 4px 40px rgba(0,0,0,.6);max-width:14ch}
+.hero h1 .grad{background:linear-gradient(180deg,#fff 8%,var(--gold-soft) 55%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .tagline{font-size:clamp(17px,2.4vw,22px);color:#d9d1e4;max-width:34ch;margin:22px 0 34px;line-height:1.55}
+.badges{display:flex;flex-wrap:wrap;gap:14px}
+.store-badge{position:relative;display:flex;align-items:center;gap:12px;min-width:190px;
+  background:linear-gradient(180deg,#1b1728,#100d1b);border:1px solid var(--line);border-radius:14px;
+  padding:11px 20px;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.store-badge:hover{transform:translateY(-3px);border-color:var(--gold-deep);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.store-badge svg{width:26px;height:26px;fill:var(--ink);flex:0 0 auto}
+.store-badge .txt{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.store-badge .txt small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.store-badge .txt b{font-family:var(--display);font-size:18px;font-weight:700;color:var(--ink)}
+.store-badge .soon{position:absolute;top:-9px;right:-8px;background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));
+  color:#1a1408;font-family:var(--sans);font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase}
+.scrollcue .mouse{width:22px;height:34px;border:2px solid var(--muted);border-radius:12px;position:relative}
+.scrollcue .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:6px;border-radius:2px;
+  background:var(--gold);transform:translateX(-50%);animation:scrolldot 1.7s infinite}
+@keyframes scrolldot{0%{opacity:0;top:6px}40%{opacity:1}80%{opacity:0;top:16px}100%{opacity:0}}
+
+/* ---------- SECTION SHELL ---------- */
+section{position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(70px,11vw,130px) clamp(16px,4vw,40px)}
+.kicker{font-family:var(--sans);font-weight:700;font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.kicker::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.sec-title{font-size:clamp(28px,4.6vw,46px);font-weight:800;max-width:18ch}
+.sec-lead{color:var(--muted);font-size:clamp(16px,1.8vw,19px);max-width:56ch;margin-top:18px}
+.center{text-align:center}
+.center .kicker{justify-content:center}.center .kicker::before{display:none}
+.center .sec-title,.center .sec-lead{margin-left:auto;margin-right:auto}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+[data-delay="1"]{transition-delay:.08s}[data-delay="2"]{transition-delay:.16s}
+[data-delay="3"]{transition-delay:.24s}[data-delay="4"]{transition-delay:.32s}
+
+/* ---------- ABOUT / PANTHEONS ---------- */
+.about{background:
+  radial-gradient(80% 60% at 15% 0%,rgba(127,140,255,.08),transparent 60%),
+  radial-gradient(70% 60% at 100% 100%,rgba(224,101,93,.08),transparent 60%)}
+.pantheons{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
+.pcard{position:relative;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  transition:transform .25s,border-color .25s}
+.pcard:hover{transform:translateY(-6px);border-color:var(--gold-deep)}
+.pcard::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c);z-index:4}
+.pimg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center top;
+  transition:transform .55s ease}
+.pcard:hover .pimg{transform:scale(1.06)}
+.pcard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,9,16,.12) 0%,rgba(10,9,16,.5) 44%,rgba(11,9,18,.97) 90%)}
+.pglyph{position:absolute;inset:0;z-index:0;display:grid;place-items:center;
+  font-family:var(--display);font-size:190px;font-weight:900;line-height:1;color:var(--c);opacity:.18;
+  background:radial-gradient(65% 55% at 50% 38%,color-mix(in srgb,var(--c) 30%,transparent),transparent 70%)}
+.pbody{position:relative;z-index:3;padding:22px}
+.pcard .pnum{font-family:var(--display);font-size:14px;color:var(--gold-soft);letter-spacing:.14em}
+.pcard h3{font-size:23px;margin:8px 0 6px;color:#fff}
+.pcard p{font-size:14.5px;color:#c9c2d6;line-height:1.55}
+
+/* ---------- FEATURES ---------- */
+.features{background:var(--bg2)}
+.fgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:52px}
+.fcard{display:flex;gap:20px;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent);
+  border:1px solid var(--line);border-radius:16px;padding:28px}
+.fcard .ico{flex:0 0 auto;width:54px;height:54px;border-radius:13px;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 25%,rgba(232,195,122,.28),rgba(232,195,122,.06));border:1px solid var(--line)}
+.fcard .ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.7}
+.fcard h3{font-size:21px;margin-bottom:7px}
+.fcard p{color:var(--muted);font-size:15px;line-height:1.6}
+
+/* ---------- GODS RAIL ---------- */
+.gods{background:
+  radial-gradient(60% 80% at 50% -10%,rgba(232,195,122,.08),transparent 60%)}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:44px 4px 20px;
+  margin:0 calc(-1 * clamp(16px,4vw,40px));padding-left:clamp(16px,4vw,40px);padding-right:clamp(16px,4vw,40px);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.god{position:relative;flex:0 0 clamp(210px,26vw,264px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;
+  scroll-snap-align:center;border:1px solid var(--line);background:var(--panel);cursor:pointer;
+  transition:transform .3s,border-color .3s,box-shadow .3s}
+.god:hover{transform:translateY(-6px);border-color:var(--gold-deep);box-shadow:0 20px 44px rgba(0,0,0,.55)}
+.god img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.god:hover img{transform:scale(1.07)}
+.god .meta{position:absolute;inset:auto 0 0 0;padding:44px 18px 18px;
+  background:linear-gradient(180deg,transparent,rgba(8,7,13,.92))}
+.god .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;margin-bottom:9px;color:#fff;background:var(--c);opacity:.95}
+.god .name{font-family:var(--display);font-size:23px;font-weight:800;color:#fff}
+.railcue{color:var(--muted);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;
+  display:flex;align-items:center;gap:8px}
+.railcue svg{width:16px;height:16px;stroke:var(--muted);fill:none}
+
+/* ---------- WORLD ---------- */
+.world-band{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.world-band .wbg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;will-change:transform}
+.world-band .wbg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,7,13,.9) 0%,rgba(8,7,13,.5) 45%,transparent 100%),
+             linear-gradient(0deg,var(--bg),transparent 55%)}
+.world-band.right .wbg::after{background:linear-gradient(270deg,rgba(8,7,13,.9) 0%,rgba(8,7,13,.5) 45%,transparent 100%),
+             linear-gradient(0deg,var(--bg),transparent 55%)}
+.world-inner{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(48px,7vw,90px)}
+.world-band.right .world-inner{text-align:right}
+.world-card{max-width:460px}
+.world-band.right .world-card{margin-left:auto}
+.world-card h3{font-size:clamp(26px,3.6vw,38px);margin:14px 0 12px}
+.world-card p{color:#cfc7db;font-size:16.5px}
+
+/* ---------- DOWNLOAD CTA ---------- */
+.cta{position:relative;text-align:center;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(70% 120% at 50% 0%,rgba(232,195,122,.14),transparent 60%),var(--bg2)}
+.cta .icon-lg{width:104px;height:104px;border-radius:26px;margin:0 auto 26px;
+  box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 0 1px var(--line)}
+.cta .badges{justify-content:center;margin-top:10px}
+.gnote{max-width:52ch;margin:34px auto 0;color:var(--muted);font-size:13.5px;line-height:1.6;
+  border-top:1px solid var(--line);padding-top:22px}
+
+/* ---------- FOOTER ---------- */
+footer{background:#07060c;border-top:1px solid var(--line)}
+.foot{max-width:var(--maxw);margin:0 auto;padding:48px clamp(16px,4vw,40px);
+  display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start}
+.foot .brand{display:flex;align-items:center;gap:13px}
+.foot .brand img{width:46px;height:46px;border-radius:12px}
+.foot .brand .bt{font-family:var(--display);font-weight:800;font-size:18px}
+.foot .brand .bt span{color:var(--gold)}
+.foot .brand small{color:var(--muted);display:block;font-family:var(--sans);font-weight:400;font-size:13px}
+.foot .flinks{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:14.5px}
+.foot .flinks a{color:var(--muted)}.foot .flinks a:hover{color:var(--gold)}
+.copy{border-top:1px solid var(--line);color:#6f6880;font-size:12.5px;text-align:center;
+  padding:20px clamp(16px,4vw,40px)}
+
+/* pre-register CTA + tracker */
+.prereg-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:800;
+  font-size:16px;letter-spacing:.04em;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));
+  padding:15px 30px;border-radius:12px;border:0;cursor:pointer;
+  box-shadow:0 8px 26px rgba(199,154,75,.4);transition:transform .18s,filter .18s}
+.prereg-cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.prereg-cta svg{width:18px;height:18px;fill:#1a1408}
+.tracker{margin-top:22px;max-width:440px}
+.tracker.hidden{display:none}
+.tracker .tline{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-size:13.5px;color:#d9d1e4;margin-bottom:8px}
+.tracker .tline b{font-family:var(--display);font-size:18px;color:var(--gold-soft)}
+.tracker .tnext{color:var(--muted);font-size:12.5px}
+.tracker .tbar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;
+  border:1px solid var(--line)}
+.tracker .tfill{height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-soft));transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.ladder{display:flex;justify-content:space-between;gap:8px;margin:16px 0 12px}
+.mstone{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.55;transition:opacity .35s}
+.mstone.reached{opacity:1}
+.mstone .mi{position:relative;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+  background:radial-gradient(circle at 40% 28%,rgba(232,195,122,.16),rgba(255,255,255,.03));
+  border:1px solid var(--line);transition:border-color .35s,box-shadow .35s}
+.mstone.reached .mi{border-color:var(--gold-deep);box-shadow:0 0 18px rgba(232,195,122,.35)}
+.mstone .mi img{width:32px;height:32px;object-fit:contain;filter:grayscale(.75) brightness(.85);transition:filter .35s}
+.mstone.reached .mi img{filter:none}
+.mstone .mi .chk{position:absolute;right:-4px;bottom:-4px;width:18px;height:18px;border-radius:50%;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));color:#1a1408;font-size:11px;font-weight:900;
+  display:none;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.mstone.reached .mi .chk{display:grid}
+.mstone .mat{font-size:11px;font-weight:700;letter-spacing:.03em;color:var(--muted)}
+.mstone.reached .mat{color:var(--gold-soft)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px;
+  background:rgba(6,5,11,.72);backdrop-filter:blur(6px)}
+.modal.open{display:flex}
+.modal-card{width:100%;max-width:440px;background:linear-gradient(180deg,#161327,#0e0c18);
+  border:1px solid var(--line);border-radius:20px;padding:30px 28px;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.modal-card h3{font-size:26px;margin-bottom:8px}
+.modal-card .msub{color:var(--muted);font-size:14.5px;margin-bottom:22px;line-height:1.55}
+.modal-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);color:var(--ink);font-size:18px;cursor:pointer;line-height:1}
+.modal-close:hover{border-color:var(--gold-deep);color:var(--gold)}
+.field{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:11px;
+  color:var(--ink);font-size:15.5px;padding:14px 16px;font-family:var(--sans)}
+.field:focus{outline:none;border-color:var(--gold-deep);background:rgba(232,195,122,.06)}
+.consent-row{display:flex;gap:10px;align-items:flex-start;margin:16px 0 20px;font-size:13px;color:var(--muted);line-height:1.5}
+.consent-row input{margin-top:2px;width:17px;height:17px;accent-color:var(--gold-deep);flex:0 0 auto;cursor:pointer}
+.consent-row a{color:var(--gold)}
+.modal-submit{width:100%;font-family:var(--sans);font-weight:800;font-size:16px;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));border:0;border-radius:12px;
+  padding:15px;cursor:pointer;transition:filter .18s}
+.modal-submit:hover{filter:brightness(1.06)}
+.modal-submit:disabled{opacity:.6;cursor:default}
+.modal-msg{margin-top:14px;font-size:14px;text-align:center;min-height:20px}
+.modal-msg.ok{color:#7fd98a}.modal-msg.err{color:#e0655d}
+.cf-turnstile{margin-top:16px;display:flex;justify-content:center}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);z-index:400;
+  background:var(--panel);border:1px solid var(--gold-deep);color:var(--gold-soft);
+  padding:13px 22px;border-radius:12px;font-size:14.5px;font-weight:600;box-shadow:0 14px 40px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- RESPONSIVE ---------- */
+/* Desktop: square art sits in a side panel (near-square) instead of a stretched full-bleed strip */
+@media(min-width:901px){
+  .world-band{min-height:min(660px,82vh);align-items:center}
+  .world-band .wbg{left:auto;right:0;width:54%}
+  .world-band .wbg::after{background:
+    linear-gradient(90deg,var(--bg) 2%,rgba(8,7,13,.55) 26%,transparent 62%),
+    linear-gradient(0deg,rgba(8,7,13,.35),transparent 45%,rgba(8,7,13,.35))}
+  .world-band.right .wbg{right:auto;left:0}
+  .world-band.right .wbg::after{background:
+    linear-gradient(270deg,var(--bg) 2%,rgba(8,7,13,.55) 26%,transparent 62%),
+    linear-gradient(0deg,rgba(8,7,13,.35),transparent 45%,rgba(8,7,13,.35))}
+  .world-inner{display:flex;align-items:center;padding:0 clamp(16px,4vw,40px)}
+  .world-band.right .world-inner{justify-content:flex-end}
+  .world-card{max-width:420px}
+}
+@media(max-width:900px){
+  .pantheons{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .nav .links{display:none}
+  .nav-cta{display:none}
+  .burger{display:block}
+  .nav .right{margin-left:auto}
+  .mobnav{position:fixed;inset:var(--nav-h) 0 auto 0;background:rgba(10,9,16,.97);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);display:none;flex-direction:column;padding:12px;z-index:99}
+  .mobnav.open{display:flex}
+  .mobnav a{color:var(--ink);font-weight:600;padding:14px 12px;border-radius:10px;letter-spacing:.04em}
+  .mobnav a:hover{background:rgba(232,195,122,.08)}
+  .world-band.right .world-inner{text-align:left}
+  .world-band .wbg::after,.world-band.right .wbg::after{
+    background:linear-gradient(0deg,var(--bg) 8%,rgba(8,7,13,.55) 60%,rgba(8,7,13,.35) 100%)}
+  .world-card,.world-band.right .world-card{max-width:none;margin:0}
+}
+@media(max-width:520px){
+  .pantheons{grid-template-columns:1fr}
+  .store-badge{flex:1 1 100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  .scrollcue .mouse::after{animation:none}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="brand">
-    <img src="./icon.png" alt="Beyond God: Ascension app icon" width="88" height="88">
-    <div>
-      <h1>Beyond God: Ascension</h1>
-      <p class="tagline">A collect-and-battle mythology RPG for iOS and Android</p>
-      <p class="publisher">Published by Bublue Studio</p>
-    </div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="#top" class="logo"><img src="./icon.png" alt="Beyond God: Ascension"><span>BEYOND<b>GOD</b></span></a>
+  <div class="links">
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#gods" data-i18n="nav.gods">Gods</a>
+    <a href="#world" data-i18n="nav.world">World</a>
+    <a href="#download" data-i18n="nav.download">Download</a>
   </div>
-</header>
-
-<h2>About the game</h2>
-<p><strong>Beyond God: Ascension</strong> is a free-to-play mobile role-playing game where you summon
-legendary gods and heroes from four great mythologies — Greek, Norse, Egyptian, and Chinese — and
-build a team to battle through a world at war. The divine order has shattered, and it is your task to
-assemble champions such as Zeus, Odin, Ra, and the Jade Emperor, master their elemental synergies, and
-rise from mortal to myth.</p>
-
-<h2>What you do in the game</h2>
-<ul>
-  <li><strong>Summon heroes:</strong> collect 40+ gods and champions through a fair, pity-backed summon system.</li>
-  <li><strong>Build a team:</strong> command a squad of five and combine factions, elements, and skills for powerful synergies.</li>
-  <li><strong>Battle through content:</strong> a hundred-chapter campaign, ranked Arena, the Endless Tower, dungeons, and the 72 God Pillars.</li>
-  <li><strong>Grow your power:</strong> level, star up, and ascend heroes, and forge mythic relics to reach godlike strength.</li>
-</ul>
-
-<p>Sign in with your Google account is offered so you can save your progress and play across devices.
-We only use your account to identify you and sync your game data — see our Privacy Policy below for details.</p>
-
-<div class="links">
-  <a href="./support.html">Support</a>
-  <a href="./privacy-policy.html">Privacy Policy</a>
-  <a href="mailto:support@bubluestudio.com">support@bubluestudio.com</a>
+  <div class="right">
+    <div class="lang" id="lang">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+        <span id="langLabel">English</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="menu"></ul>
+    </div>
+    <a href="#download" class="nav-cta" data-i18n="nav.play">Play Now</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobnav" id="mobnav">
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#gods" data-i18n="nav.gods">Gods</a>
+  <a href="#world" data-i18n="nav.world">World</a>
+  <a href="#download" data-i18n="nav.download">Download</a>
 </div>
 
-<footer>© 2026 Bublue Studio. Beyond God: Ascension and all related marks are trademarks of Bublue Studio.</footer>
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-bg" id="heroBg" style="background-image:url('./assets/bg/battle_zues.jpg')"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner reveal in">
+    <span class="hero-eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Collect · Battle · Ascend</span></span>
+    <h1><span class="grad">Beyond God</span><br><span class="grad">Ascension</span></h1>
+    <p class="tagline" data-i18n="hero.tagline">Summon the gods of four mythologies and rise from mortal to myth.</p>
+    <button class="prereg-cta" id="preregOpen" type="button">
+      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H21l-5.3 4 2 7L12 15.7 6.3 19.9l2-7L3 8.9h6.6z"/></svg>
+      <span data-i18n="prereg.cta">Pre-register</span>
+    </button>
+    <div class="tracker hidden" id="tracker">
+      <div class="tline"><span><b id="trackCount">0</b> <span data-i18n="prereg.count_suffix">summoners pre-registered</span></span></div>
+      <div class="ladder" id="ladder"></div>
+      <div class="tbar"><div class="tfill" id="trackFill"></div></div>
+    </div>
+    <div class="badges" style="margin-top:26px">
+      <div class="store-badge" data-soon>
+        <span class="soon" data-i18n="badge.soon">Coming Soon</span>
+        <svg viewBox="0 0 24 24"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-.1.3-.6 1.5-.6 3.1 0 .8.2 1.7.4 2.6.5 1.4 1.7 3.4 2.9 3.3.6 0 1-.4 2-.4s1.3.4 2 .4c1.2 0 2.3-2 2.7-3.3-1.7-.7-1.9-2.7-1.9-2.8zM14.6 6.9c.6-.7 1-1.6.8-2.6-.8 0-1.8.6-2.4 1.2-.5.6-1 1.5-.8 2.5.9 0 1.8-.5 2.4-1.1z"/></svg>
+        <span class="txt"><small data-i18n="badge.ios.top">Download on the</small><b data-i18n="badge.ios.name">App Store</b></span>
+      </div>
+      <div class="store-badge" data-soon>
+        <span class="soon" data-i18n="badge.soon">Coming Soon</span>
+        <svg viewBox="0 0 24 24"><path d="M4.3 3.3 13.5 12l-9.2 8.7c-.2-.2-.3-.5-.3-.9V4.2c0-.4.1-.7.3-.9zm10.5 9.6 2.4 2.3-9 5.1 6.6-7.4zm3.6-1.7c.5.3.8.7.8 1.2s-.3.9-.8 1.2l-2 1.1-2.6-2.3 2.6-2.3 2 1.1zM5.8 3l9 5.1-2.4 2.3L5.8 3z"/></svg>
+        <span class="txt"><small data-i18n="badge.android.top">Get it on</small><b data-i18n="badge.android.name">Google Play</b></span>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="scrollcue"><span class="mouse"></span><span data-i18n="hero.scroll">Scroll</span></a>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="reveal"><span class="kicker" data-i18n="about.kicker">The divine order has shattered</span></div>
+    <h2 class="sec-title reveal" data-i18n="about.title">A war across four mythologies</h2>
+    <p class="sec-lead reveal" data-i18n="about.body">Greek, Norse, Egyptian, and Chinese pantheons collide in a world at war. Summon legendary gods and champions, master their elemental synergies, and rise from mortal to myth.</p>
+    <div class="pantheons">
+      <div class="pcard reveal" data-delay="1" style="--c:var(--greek)"><div class="pimg" style="background-image:url('./assets/heroes/ares.jpg')"></div><div class="pbody"><div class="pnum">I</div><h3 data-i18n="pan.greek">Greek</h3><p data-i18n="pan.greek.d">Olympians of thunder, sea, and war.</p></div></div>
+      <div class="pcard reveal" data-delay="2" style="--c:var(--norse)"><div class="pimg" style="background-image:url('./assets/heroes/heimdall.jpg')"></div><div class="pbody"><div class="pnum">II</div><h3 data-i18n="pan.norse">Norse</h3><p data-i18n="pan.norse.d">Aesir and giants bound to Ragnarok.</p></div></div>
+      <div class="pcard reveal" data-delay="3" style="--c:var(--egypt)"><div class="pimg" style="background-image:url('./assets/heroes/anubis.jpg')"></div><div class="pbody"><div class="pnum">III</div><h3 data-i18n="pan.egyptian">Egyptian</h3><p data-i18n="pan.egyptian.d">Lords of the sun, death, and rebirth.</p></div></div>
+      <div class="pcard reveal" data-delay="4" style="--c:var(--chinese)"><div class="pimg" style="background-image:url('./assets/heroes/wukong.jpg')"></div><div class="pbody"><div class="pnum">IV</div><h3 data-i18n="pan.chinese">Chinese</h3><p data-i18n="pan.chinese.d">Celestial immortals of the Jade Court.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features">
+  <div class="wrap">
+    <div class="reveal"><span class="kicker" data-i18n="feat.kicker">The path to godhood</span></div>
+    <h2 class="sec-title reveal" data-i18n="feat.title">Everything a legend needs</h2>
+    <div class="fgrid">
+      <div class="fcard reveal" data-delay="1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H21l-5.3 4 2 7L12 15.7 6.3 19.9l2-7L3 8.9h6.6z"/></svg></div>
+        <div><h3 data-i18n="feat.summon.t">Summon Legends</h3><p data-i18n="feat.summon.d">Collect 40+ gods and champions through a fair, pity-backed summon system.</p></div>
+      </div>
+      <div class="fcard reveal" data-delay="2">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3.5 19c.4-3 2.7-5 5.5-5s5.1 2 5.5 5M14.5 18c.3-2 1.8-3.4 3.6-3.4 1.6 0 3 1.1 3.4 2.9"/></svg></div>
+        <div><h3 data-i18n="feat.team.t">Build Your Team</h3><p data-i18n="feat.team.d">Command a squad of five and combine factions, elements, and skills for devastating synergies.</p></div>
+      </div>
+      <div class="fcard reveal" data-delay="3">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14.5 3.5l6 6L9 21H3v-6zM12 6l6 6"/></svg></div>
+        <div><h3 data-i18n="feat.battle.t">Battle Everywhere</h3><p data-i18n="feat.battle.d">A hundred-chapter campaign, ranked Arena, the Endless Tower, dungeons, and the 72 God Pillars.</p></div>
+      </div>
+      <div class="fcard reveal" data-delay="4">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10m4 10V6m4 14v-8m4 8V4"/></svg></div>
+        <div><h3 data-i18n="feat.power.t">Ascend Your Power</h3><p data-i18n="feat.power.d">Level, star up, and ascend heroes, and forge mythic relics to reach godlike strength.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GODS ================= -->
+<section class="gods" id="gods">
+  <div class="wrap" style="padding-bottom:0">
+    <div class="reveal"><span class="kicker" data-i18n="gods.kicker">The Pantheon</span></div>
+    <h2 class="sec-title reveal" data-i18n="gods.title">Champions of legend</h2>
+    <p class="sec-lead reveal" data-i18n="gods.body">From Zeus and Odin to Ra and beyond — assemble a roster of gods, each with signature skills and elemental power.</p>
+    <div class="railcue reveal"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span data-i18n="gods.drag">Drag to explore</span></div>
+  </div>
+  <div class="rail" id="rail">
+    <div class="god reveal" style="--c:var(--greek)"><img src="./assets/heroes/ares.jpg" alt="Ares" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.greek">Greek</span><div class="name" data-i18n="hero.ares">Ares</div></div></div>
+    <div class="god reveal" style="--c:var(--norse)"><img src="./assets/heroes/odin.jpg" alt="Odin" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.norse">Norse</span><div class="name" data-i18n="hero.odin">Odin</div></div></div>
+    <div class="god reveal" style="--c:var(--egypt)"><img src="./assets/heroes/ra.jpg" alt="Ra" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.egyptian">Egyptian</span><div class="name" data-i18n="hero.ra">Ra</div></div></div>
+    <div class="god reveal" style="--c:var(--chinese)"><img src="./assets/heroes/wukong.jpg" alt="Sun Wukong" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.chinese">Chinese</span><div class="name" data-i18n="hero.wukong">Sun Wukong</div></div></div>
+    <div class="god reveal" style="--c:var(--greek)"><img src="./assets/heroes/aphrodite.jpg" alt="Aphrodite" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.greek">Greek</span><div class="name" data-i18n="hero.aphrodite">Aphrodite</div></div></div>
+    <div class="god reveal" style="--c:var(--norse)"><img src="./assets/heroes/thor.jpg" alt="Thor" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.norse">Norse</span><div class="name" data-i18n="hero.thor">Thor</div></div></div>
+    <div class="god reveal" style="--c:var(--egypt)"><img src="./assets/heroes/isis.jpg" alt="Isis" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.egyptian">Egyptian</span><div class="name" data-i18n="hero.isis">Isis</div></div></div>
+    <div class="god reveal" style="--c:var(--chinese)"><img src="./assets/heroes/nuwa.jpg" alt="Nüwa" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.chinese">Chinese</span><div class="name" data-i18n="hero.nuwa">Nüwa</div></div></div>
+    <div class="god reveal" style="--c:var(--greek)"><img src="./assets/heroes/hephaestus.jpg" alt="Hephaestus" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.greek">Greek</span><div class="name" data-i18n="hero.hephaestus">Hephaestus</div></div></div>
+    <div class="god reveal" style="--c:var(--norse)"><img src="./assets/heroes/loki.jpg" alt="Loki" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.norse">Norse</span><div class="name" data-i18n="hero.loki">Loki</div></div></div>
+    <div class="god reveal" style="--c:var(--egypt)"><img src="./assets/heroes/anubis.jpg" alt="Anubis" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.egyptian">Egyptian</span><div class="name" data-i18n="hero.anubis">Anubis</div></div></div>
+    <div class="god reveal" style="--c:var(--chinese)"><img src="./assets/heroes/nezha.jpg" alt="Ne Zha" loading="lazy"><div class="meta"><span class="tag" data-i18n="pan.chinese">Chinese</span><div class="name" data-i18n="hero.nezha">Ne Zha</div></div></div>
+  </div>
+</section>
+
+<!-- ================= WORLD ================= -->
+<section id="world">
+  <div class="world-band">
+    <div class="wbg" style="background-image:url('./assets/bg/battle_poseidon.jpg')"></div>
+    <div class="world-inner">
+      <div class="world-card reveal">
+        <span class="kicker" data-i18n="world.kicker">Endless battle</span>
+        <h3 data-i18n="world.arena.t">Ranked Arena</h3>
+        <p data-i18n="world.arena.d">Pit your team against players across the realm and climb the seasonal ladder for glory and rewards.</p>
+      </div>
+    </div>
+  </div>
+  <div class="world-band right">
+    <div class="wbg" style="background-image:url('./assets/bg/battle_hades.jpg')"></div>
+    <div class="world-inner">
+      <div class="world-card reveal">
+        <span class="kicker" data-i18n="world.kicker2">Rise higher</span>
+        <h3 data-i18n="world.tower.t">The Endless Tower</h3>
+        <p data-i18n="world.tower.d">Climb floor after floor of escalating trials, each guarded by mightier foes and ever-greater rewards.</p>
+      </div>
+    </div>
+  </div>
+  <div class="world-band">
+    <div class="wbg" style="background-image:url('./assets/bg/battle_apollo.jpg')"></div>
+    <div class="world-inner">
+      <div class="world-card reveal">
+        <span class="kicker" data-i18n="world.kicker3">The great trials</span>
+        <h3 data-i18n="world.pillars.t">72 God Pillars</h3>
+        <p data-i18n="world.pillars.d">Face the seventy-two trials of the pillars, defeat their guardians, and claim divine relics of unmatched power.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOWNLOAD ================= -->
+<section class="cta" id="download">
+  <div class="wrap center">
+    <img class="icon-lg" src="./icon.png" alt="Beyond God: Ascension">
+    <div class="reveal"><span class="kicker" data-i18n="dl.kicker">Free to play</span></div>
+    <h2 class="sec-title reveal" data-i18n="dl.title">Begin your ascension</h2>
+    <p class="sec-lead reveal" data-i18n="dl.body">Join the war of the gods on iOS and Android. Free to download — summon your first legends today.</p>
+    <div class="badges reveal" data-delay="1">
+      <div class="store-badge" data-soon>
+        <span class="soon" data-i18n="badge.soon">Coming Soon</span>
+        <svg viewBox="0 0 24 24"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-.1.3-.6 1.5-.6 3.1 0 .8.2 1.7.4 2.6.5 1.4 1.7 3.4 2.9 3.3.6 0 1-.4 2-.4s1.3.4 2 .4c1.2 0 2.3-2 2.7-3.3-1.7-.7-1.9-2.7-1.9-2.8zM14.6 6.9c.6-.7 1-1.6.8-2.6-.8 0-1.8.6-2.4 1.2-.5.6-1 1.5-.8 2.5.9 0 1.8-.5 2.4-1.1z"/></svg>
+        <span class="txt"><small data-i18n="badge.ios.top">Download on the</small><b data-i18n="badge.ios.name">App Store</b></span>
+      </div>
+      <div class="store-badge" data-soon>
+        <span class="soon" data-i18n="badge.soon">Coming Soon</span>
+        <svg viewBox="0 0 24 24"><path d="M4.3 3.3 13.5 12l-9.2 8.7c-.2-.2-.3-.5-.3-.9V4.2c0-.4.1-.7.3-.9zm10.5 9.6 2.4 2.3-9 5.1 6.6-7.4zm3.6-1.7c.5.3.8.7.8 1.2s-.3.9-.8 1.2l-2 1.1-2.6-2.3 2.6-2.3 2 1.1zM5.8 3l9 5.1-2.4 2.3L5.8 3z"/></svg>
+        <span class="txt"><small data-i18n="badge.android.top">Get it on</small><b data-i18n="badge.android.name">Google Play</b></span>
+      </div>
+    </div>
+    <p class="gnote" data-i18n="dl.gnote">Sign in with your Google account is offered so you can save your progress and play across devices. We only use your account to identify you and sync your game data — see our Privacy Policy for details.</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot">
+    <div class="brand">
+      <img src="./icon.png" alt="Beyond God: Ascension">
+      <div><div class="bt">BEYOND <span>GOD</span></div><small data-i18n="foot.pub">Published by Bublue Studio</small></div>
+    </div>
+    <nav class="flinks">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#gods" data-i18n="nav.gods">Gods</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+      <a href="./support.html" data-i18n="foot.support">Support</a>
+      <a href="./privacy-policy.html" data-i18n="foot.privacy">Privacy Policy</a>
+      <a href="mailto:support@bubluestudio.com">support@bubluestudio.com</a>
+    </nav>
+  </div>
+  <div class="copy" data-i18n="foot.copy">© 2026 Bublue Studio. Beyond God: Ascension and all related marks are trademarks of Bublue Studio.</div>
+</footer>
+
+<!-- ============ PRE-REGISTER MODAL ============ -->
+<div class="modal" id="preregModal" role="dialog" aria-modal="true" aria-labelledby="preregTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="preregClose" aria-label="Close">✕</button>
+    <h3 id="preregTitle" data-i18n="prereg.title">Pre-register now</h3>
+    <p class="msub" data-i18n="prereg.sub">Join the summoning and unlock launch rewards for everyone.</p>
+    <form id="preregForm" novalidate>
+      <input class="field" id="preregEmail" type="email" autocomplete="email" required
+             data-i18n-ph="prereg.email_ph" placeholder="Your email address">
+      <label class="consent-row">
+        <input type="checkbox" id="preregConsent">
+        <span><span data-i18n="prereg.consent">I agree to receive a launch notification, per the Privacy Policy.</span>
+          <a href="./privacy-policy.html" target="_blank" rel="noopener" data-i18n="foot.privacy">Privacy Policy</a></span>
+      </label>
+      <div class="cf-turnstile" id="turnstileBox"></div>
+      <button class="modal-submit" id="preregSubmit" type="submit" data-i18n="prereg.submit">Count me in</button>
+      <div class="modal-msg" id="preregMsg"></div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- i18n ---------------- */
+const LANGS=[
+  {code:"en",label:"English"},
+  {code:"zh-CN",label:"简体中文"},
+  {code:"zh-TW",label:"繁體中文"},
+  {code:"ko",label:"한국어"},
+  {code:"ja",label:"日本語"},
+  {code:"th",label:"ไทย"},
+  {code:"id",label:"Bahasa Indonesia"},
+  {code:"vi",label:"Tiếng Việt"}
+];
+const I18N={
+"en":{
+ "nav.about":"About","nav.gods":"Gods","nav.world":"World","nav.download":"Download","nav.play":"Play Now",
+ "hero.eyebrow":"Collect · Battle · Ascend",
+ "hero.tagline":"Summon the gods of four mythologies and rise from mortal to myth.",
+ "hero.scroll":"Scroll",
+ "badge.soon":"Coming Soon","badge.ios.top":"Download on the","badge.ios.name":"App Store","badge.android.top":"Get it on","badge.android.name":"Google Play",
+ "about.kicker":"The divine order has shattered",
+ "about.title":"A war across four mythologies",
+ "about.body":"Greek, Norse, Egyptian, and Chinese pantheons collide in a world at war. Summon legendary gods and champions, master their elemental synergies, and rise from mortal to myth.",
+ "pan.greek":"Greek","pan.greek.d":"Olympians of thunder, sea, and war.",
+ "pan.norse":"Norse","pan.norse.d":"Aesir and giants bound to Ragnarok.",
+ "pan.egyptian":"Egyptian","pan.egyptian.d":"Lords of the sun, death, and rebirth.",
+ "pan.chinese":"Chinese","pan.chinese.d":"Celestial immortals of the Jade Court.",
+ "feat.kicker":"The path to godhood","feat.title":"Everything a legend needs",
+ "feat.summon.t":"Summon Legends","feat.summon.d":"Collect 40+ gods and champions through a fair, pity-backed summon system.",
+ "feat.team.t":"Build Your Team","feat.team.d":"Command a squad of five and combine factions, elements, and skills for devastating synergies.",
+ "feat.battle.t":"Battle Everywhere","feat.battle.d":"A hundred-chapter campaign, ranked Arena, the Endless Tower, dungeons, and the 72 God Pillars.",
+ "feat.power.t":"Ascend Your Power","feat.power.d":"Level, star up, and ascend heroes, and forge mythic relics to reach godlike strength.",
+ "gods.kicker":"The Pantheon","gods.title":"Champions of legend",
+ "gods.body":"From Zeus and Odin to Ra and beyond — assemble a roster of gods, each with signature skills and elemental power.",
+ "gods.drag":"Drag to explore",
+ "hero.ares":"Ares","hero.aphrodite":"Aphrodite","hero.hephaestus":"Hephaestus","hero.odin":"Odin","hero.thor":"Thor","hero.loki":"Loki","hero.ra":"Ra","hero.isis":"Isis","hero.anubis":"Anubis","hero.wukong":"Sun Wukong","hero.nuwa":"Nüwa","hero.nezha":"Ne Zha",
+ "world.kicker":"Endless battle","world.arena.t":"Ranked Arena","world.arena.d":"Pit your team against players across the realm and climb the seasonal ladder for glory and rewards.",
+ "world.kicker2":"Rise higher","world.tower.t":"The Endless Tower","world.tower.d":"Climb floor after floor of escalating trials, each guarded by mightier foes and ever-greater rewards.",
+ "world.kicker3":"The great trials","world.pillars.t":"72 God Pillars","world.pillars.d":"Face the seventy-two trials of the pillars, defeat their guardians, and claim divine relics of unmatched power.",
+ "dl.kicker":"Free to play","dl.title":"Begin your ascension","dl.body":"Join the war of the gods on iOS and Android. Free to download — summon your first legends today.",
+ "dl.gnote":"Sign in with your Google account is offered so you can save your progress and play across devices. We only use your account to identify you and sync your game data — see our Privacy Policy for details.",
+ "foot.pub":"Published by Bublue Studio","foot.support":"Support","foot.privacy":"Privacy Policy",
+ "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension and all related marks are trademarks of Bublue Studio.",
+ "toast.soon":"Coming soon — stay tuned!",
+ "prereg.cta":"Pre-register","prereg.count_suffix":"summoners pre-registered","prereg.next_prefix":"Next reward at",
+ "prereg.title":"Pre-register now","prereg.sub":"Join the summoning and unlock launch rewards for everyone.",
+ "prereg.email_ph":"Your email address","prereg.consent":"I agree to receive a launch notification, per the Privacy Policy.",
+ "prereg.submit":"Count me in","prereg.success":"You're in! At launch, bind your account in-game to claim the rewards.",
+ "prereg.already":"You're already registered — see you at launch!","prereg.err_email":"Please enter a valid email address.",
+ "prereg.err_consent":"Please tick the box to continue.","prereg.err_generic":"Something went wrong. Please try again.",
+ "prereg.reward.gems":"300 Gems","prereg.reward.divine":"10× Divine Summon","prereg.reward.sigil":"20× Sigil of Ascension","prereg.reward.realm":"10× Realm Key"
+},
+"zh-CN":{
+ "nav.about":"简介","nav.gods":"众神","nav.world":"世界","nav.download":"下载","nav.play":"立即游玩",
+ "hero.eyebrow":"收集 · 战斗 · 飞升",
+ "hero.tagline":"召唤四大神话的诸神，从凡人蜕变为传说。",
+ "hero.scroll":"下滑",
+ "badge.soon":"敬请期待","badge.ios.top":"下载于","badge.ios.name":"App Store","badge.android.top":"下载于","badge.android.name":"Google Play",
+ "about.kicker":"神界秩序已然崩塌",
+ "about.title":"横跨四大神话的战争",
+ "about.body":"希腊、北欧、埃及与华夏神系在乱世中激烈碰撞。召唤传奇诸神与英雄，掌握元素间的克制与协同，从凡人一路飞升为神话。",
+ "pan.greek":"希腊","pan.greek.d":"掌控雷霆、海洋与战争的奥林匹斯诸神。",
+ "pan.norse":"北欧","pan.norse.d":"与诸神黄昏羁绊的阿萨神族与巨人。",
+ "pan.egyptian":"埃及","pan.egyptian.d":"司掌太阳、死亡与重生的神明。",
+ "pan.chinese":"华夏","pan.chinese.d":"天庭玉阙中的众位仙神。",
+ "feat.kicker":"成神之路","feat.title":"传奇所需的一切",
+ "feat.summon.t":"召唤传奇","feat.summon.d":"通过公平且带保底的召唤系统，收集 40 余位诸神与英雄。",
+ "feat.team.t":"组建阵容","feat.team.d":"统领五人小队，结合阵营、元素与技能，打出毁灭性的协同。",
+ "feat.battle.t":"处处激战","feat.battle.d":"百章主线、竞技场排位、无尽之塔、地下城，以及七十二神柱。",
+ "feat.power.t":"飞升实力","feat.power.d":"升级、升星、飞升英雄，并锻造神话遗物，抵达神一般的力量。",
+ "gods.kicker":"众神殿","gods.title":"传说的斗士",
+ "gods.body":"从宙斯、奥丁到拉神——集结一支诸神阵容，人人身怀专属技能与元素之力。",
+ "gods.drag":"拖动浏览",
+ "hero.ares":"阿瑞斯","hero.aphrodite":"阿佛洛狄忒","hero.hephaestus":"赫淮斯托斯","hero.odin":"奥丁","hero.thor":"索尔","hero.loki":"洛基","hero.ra":"拉","hero.isis":"伊西斯","hero.anubis":"阿努比斯","hero.wukong":"孙悟空","hero.nuwa":"女娲","hero.nezha":"哪吒",
+ "world.kicker":"无尽征战","world.arena.t":"竞技场排位","world.arena.d":"率队迎战全服玩家，登上赛季天梯，赢取荣耀与奖励。",
+ "world.kicker2":"步步登高","world.tower.t":"无尽之塔","world.tower.d":"层层攀登不断升级的试炼，每一层皆有更强敌人与更丰厚的奖励。",
+ "world.kicker3":"伟大试炼","world.pillars.t":"七十二神柱","world.pillars.d":"直面七十二神柱的试炼，击败守护者，夺取无与伦比的神圣遗物。",
+ "dl.kicker":"免费游玩","dl.title":"开启你的飞升之路","dl.body":"在 iOS 与 Android 上加入诸神之战。免费下载——今日即刻召唤你的首位传奇。",
+ "dl.gnote":"提供 Google 账号登录，方便你保存进度并跨设备游玩。我们仅用你的账号来识别身份并同步游戏数据——详情请见隐私政策。",
+ "foot.pub":"由 Bublue Studio 发行","foot.support":"支持","foot.privacy":"隐私政策",
+ "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相关标志均为 Bublue Studio 的商标。",
+ "prereg.cta":"预约","prereg.count_suffix":"位召唤师已预约","prereg.next_prefix":"下个奖励解锁于",
+ "prereg.title":"立即预约","prereg.sub":"加入召唤，为所有玩家解锁开服奖励。",
+ "prereg.email_ph":"你的电子邮箱","prereg.consent":"我同意接收开服通知，并已阅读隐私政策。",
+ "prereg.submit":"算我一个","prereg.success":"预约成功！开服后在游戏内绑定账号即可领取奖励。",
+ "prereg.already":"你已预约——开服见！","prereg.err_email":"请输入有效的电子邮箱。",
+ "prereg.err_consent":"请勾选以继续。","prereg.err_generic":"出错了，请重试。",
+ "prereg.reward.gems":"300 钻石","prereg.reward.divine":"神圣召唤 ×10","prereg.reward.sigil":"飞升印记 ×20","prereg.reward.realm":"境界钥匙 ×10",
+ "toast.soon":"敬请期待，尽情关注！"
+},
+"zh-TW":{
+ "nav.about":"簡介","nav.gods":"眾神","nav.world":"世界","nav.download":"下載","nav.play":"立即遊玩",
+ "hero.eyebrow":"收集 · 戰鬥 · 飛昇",
+ "hero.tagline":"召喚四大神話的諸神，從凡人蛻變為傳說。",
+ "hero.scroll":"下滑",
+ "badge.soon":"敬請期待","badge.ios.top":"下載於","badge.ios.name":"App Store","badge.android.top":"下載於","badge.android.name":"Google Play",
+ "about.kicker":"神界秩序已然崩塌",
+ "about.title":"橫跨四大神話的戰爭",
+ "about.body":"希臘、北歐、埃及與華夏神系在亂世中激烈碰撞。召喚傳奇諸神與英雄，掌握元素間的剋制與協同，從凡人一路飛昇為神話。",
+ "pan.greek":"希臘","pan.greek.d":"掌控雷霆、海洋與戰爭的奧林帕斯諸神。",
+ "pan.norse":"北歐","pan.norse.d":"與諸神黃昏羈絆的阿薩神族與巨人。",
+ "pan.egyptian":"埃及","pan.egyptian.d":"司掌太陽、死亡與重生的神明。",
+ "pan.chinese":"華夏","pan.chinese.d":"天庭玉闕中的眾位仙神。",
+ "feat.kicker":"成神之路","feat.title":"傳奇所需的一切",
+ "feat.summon.t":"召喚傳奇","feat.summon.d":"透過公平且帶保底的召喚系統，收集 40 餘位諸神與英雄。",
+ "feat.team.t":"組建陣容","feat.team.d":"統領五人小隊，結合陣營、元素與技能，打出毀滅性的協同。",
+ "feat.battle.t":"處處激戰","feat.battle.d":"百章主線、競技場排位、無盡之塔、地下城，以及七十二神柱。",
+ "feat.power.t":"飛昇實力","feat.power.d":"升級、升星、飛昇英雄，並鍛造神話遺物，抵達神一般的力量。",
+ "gods.kicker":"眾神殿","gods.title":"傳說的鬥士",
+ "gods.body":"從宙斯、奧丁到拉神——集結一支諸神陣容，人人身懷專屬技能與元素之力。",
+ "gods.drag":"拖動瀏覽",
+ "hero.ares":"阿瑞斯","hero.aphrodite":"阿芙蘿黛蒂","hero.hephaestus":"赫菲斯托斯","hero.odin":"奧丁","hero.thor":"索爾","hero.loki":"洛基","hero.ra":"拉","hero.isis":"伊西斯","hero.anubis":"阿努比斯","hero.wukong":"孫悟空","hero.nuwa":"女媧","hero.nezha":"哪吒",
+ "world.kicker":"無盡征戰","world.arena.t":"競技場排位","world.arena.d":"率隊迎戰全服玩家，登上賽季天梯，贏取榮耀與獎勵。",
+ "world.kicker2":"步步登高","world.tower.t":"無盡之塔","world.tower.d":"層層攀登不斷升級的試煉，每一層皆有更強敵人與更豐厚的獎勵。",
+ "world.kicker3":"偉大試煉","world.pillars.t":"七十二神柱","world.pillars.d":"直面七十二神柱的試煉，擊敗守護者，奪取無與倫比的神聖遺物。",
+ "dl.kicker":"免費遊玩","dl.title":"開啟你的飛昇之路","dl.body":"在 iOS 與 Android 上加入諸神之戰。免費下載——今日即刻召喚你的首位傳奇。",
+ "dl.gnote":"提供 Google 帳號登入，方便你儲存進度並跨裝置遊玩。我們僅用你的帳號來識別身分並同步遊戲資料——詳情請見隱私政策。",
+ "foot.pub":"由 Bublue Studio 發行","foot.support":"支援","foot.privacy":"隱私政策",
+ "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相關標誌均為 Bublue Studio 的商標。",
+ "prereg.cta":"預約","prereg.count_suffix":"位召喚師已預約","prereg.next_prefix":"下個獎勵解鎖於",
+ "prereg.title":"立即預約","prereg.sub":"加入召喚，為所有玩家解鎖開服獎勵。",
+ "prereg.email_ph":"你的電子郵箱","prereg.consent":"我同意接收開服通知，並已閱讀隱私政策。",
+ "prereg.submit":"算我一個","prereg.success":"預約成功！開服後在遊戲內綁定帳號即可領取獎勵。",
+ "prereg.already":"你已預約——開服見！","prereg.err_email":"請輸入有效的電子郵箱。",
+ "prereg.err_consent":"請勾選以繼續。","prereg.err_generic":"發生錯誤，請重試。",
+ "prereg.reward.gems":"300 鑽石","prereg.reward.divine":"神聖召喚 ×10","prereg.reward.sigil":"飛昇印記 ×20","prereg.reward.realm":"境界鑰匙 ×10",
+ "toast.soon":"敬請期待，盡情關注！"
+},
+"ko":{
+ "nav.about":"소개","nav.gods":"신들","nav.world":"세계","nav.download":"다운로드","nav.play":"지금 플레이",
+ "hero.eyebrow":"수집 · 전투 · 승천",
+ "hero.tagline":"네 신화의 신들을 소환하고, 필멸자에서 신화로 거듭나세요.",
+ "hero.scroll":"스크롤",
+ "badge.soon":"출시 예정","badge.ios.top":"다운로드","badge.ios.name":"App Store","badge.android.top":"다운로드","badge.android.name":"Google Play",
+ "about.kicker":"신들의 질서가 무너졌다",
+ "about.title":"네 신화를 가로지르는 전쟁",
+ "about.body":"그리스, 북유럽, 이집트, 중국 신들이 전란의 세계에서 충돌합니다. 전설의 신과 영웅을 소환하고, 속성 시너지를 통달하여 필멸자에서 신화로 승천하세요.",
+ "pan.greek":"그리스","pan.greek.d":"천둥과 바다, 전쟁을 관장하는 올림포스 신들.",
+ "pan.norse":"북유럽","pan.norse.d":"라그나로크에 얽힌 아사 신족과 거인들.",
+ "pan.egyptian":"이집트","pan.egyptian.d":"태양과 죽음, 부활의 주인들.",
+ "pan.chinese":"중국","pan.chinese.d":"옥좌를 지키는 천상의 선인들.",
+ "feat.kicker":"신에 이르는 길","feat.title":"전설에게 필요한 모든 것",
+ "feat.summon.t":"전설 소환","feat.summon.d":"공정한 천장 시스템으로 40명이 넘는 신과 영웅을 수집하세요.",
+ "feat.team.t":"팀 구성","feat.team.d":"5인 부대를 지휘하고 진영·속성·스킬을 조합해 강력한 시너지를 만드세요.",
+ "feat.battle.t":"어디서나 전투","feat.battle.d":"100장 캠페인, 랭킹 아레나, 무한의 탑, 던전, 그리고 72신주.",
+ "feat.power.t":"힘의 승천","feat.power.d":"영웅을 레벨업·성장·승천시키고 신화 유물을 제련해 신에 필적하는 힘에 도달하세요.",
+ "gods.kicker":"판테온","gods.title":"전설의 투사들",
+ "gods.body":"제우스와 오딘부터 라까지—저마다 고유 스킬과 속성의 힘을 지닌 신들의 진영을 구성하세요.",
+ "gods.drag":"드래그하여 둘러보기",
+ "hero.ares":"아레스","hero.aphrodite":"아프로디테","hero.hephaestus":"헤파이스토스","hero.odin":"오딘","hero.thor":"토르","hero.loki":"로키","hero.ra":"라","hero.isis":"이시스","hero.anubis":"아누비스","hero.wukong":"손오공","hero.nuwa":"여와","hero.nezha":"나타",
+ "world.kicker":"끝없는 전투","world.arena.t":"랭킹 아레나","world.arena.d":"전 서버 플레이어와 팀으로 겨루고, 시즌 사다리를 올라 영광과 보상을 차지하세요.",
+ "world.kicker2":"더 높이","world.tower.t":"무한의 탑","world.tower.d":"점점 강해지는 시련을 층층이 오르세요. 각 층에는 더 강한 적과 더 큰 보상이 기다립니다.",
+ "world.kicker3":"위대한 시련","world.pillars.t":"72신주","world.pillars.d":"일흔두 신주의 시련에 맞서 수호자를 물리치고, 비할 데 없는 신성한 유물을 손에 넣으세요.",
+ "dl.kicker":"무료 플레이","dl.title":"승천을 시작하세요","dl.body":"iOS와 Android에서 신들의 전쟁에 참여하세요. 무료 다운로드—오늘 첫 전설을 소환하세요.",
+ "dl.gnote":"진행 상황을 저장하고 여러 기기에서 플레이할 수 있도록 Google 계정 로그인을 제공합니다. 계정은 본인 식별과 게임 데이터 동기화에만 사용됩니다—자세한 내용은 개인정보 처리방침을 참고하세요.",
+ "foot.pub":"Bublue Studio 배급","foot.support":"고객지원","foot.privacy":"개인정보 처리방침",
+ "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension 및 관련 상표는 Bublue Studio의 상표입니다.",
+ "prereg.cta":"사전예약","prereg.count_suffix":"명의 소환사가 사전예약했어요","prereg.next_prefix":"다음 보상 해금까지",
+ "prereg.title":"지금 사전예약","prereg.sub":"소환에 동참하고 모두를 위한 출시 보상을 해금하세요.",
+ "prereg.email_ph":"이메일 주소","prereg.consent":"출시 알림 수신에 동의하며 개인정보 처리방침을 확인했습니다.",
+ "prereg.submit":"참여하기","prereg.success":"완료됐어요! 출시 후 게임에서 계정을 연동하면 보상을 받을 수 있어요.",
+ "prereg.already":"이미 사전예약하셨어요 — 출시 때 만나요!","prereg.err_email":"올바른 이메일 주소를 입력해 주세요.",
+ "prereg.err_consent":"계속하려면 체크해 주세요.","prereg.err_generic":"문제가 발생했어요. 다시 시도해 주세요.",
+ "prereg.reward.gems":"젬 300개","prereg.reward.divine":"신성 소환 ×10","prereg.reward.sigil":"승천의 인장 ×20","prereg.reward.realm":"차원의 열쇠 ×10",
+ "toast.soon":"곧 출시됩니다 — 기대해 주세요!"
+},
+"ja":{
+ "nav.about":"概要","nav.gods":"神々","nav.world":"世界","nav.download":"ダウンロード","nav.play":"今すぐプレイ",
+ "hero.eyebrow":"集める · 戦う · 昇華",
+ "hero.tagline":"四大神話の神々を召喚し、人の身から神話へと昇りつめよ。",
+ "hero.scroll":"スクロール",
+ "badge.soon":"近日公開","badge.ios.top":"ダウンロード","badge.ios.name":"App Store","badge.android.top":"入手先","badge.android.name":"Google Play",
+ "about.kicker":"神々の秩序は崩れ去った",
+ "about.title":"四大神話をまたぐ戦い",
+ "about.body":"ギリシャ、北欧、エジプト、中国の神々が戦乱の世界で激突する。伝説の神と英雄を召喚し、属性の相性を極め、人の身から神話へと昇華せよ。",
+ "pan.greek":"ギリシャ","pan.greek.d":"雷・海・戦を司るオリンポスの神々。",
+ "pan.norse":"北欧","pan.norse.d":"ラグナロクに結ばれたアース神族と巨人。",
+ "pan.egyptian":"エジプト","pan.egyptian.d":"太陽・死・再生を司る神々。",
+ "pan.chinese":"中国","pan.chinese.d":"天宮に集う仙人と神仙たち。",
+ "feat.kicker":"神へ至る道","feat.title":"伝説に必要なすべて",
+ "feat.summon.t":"伝説を召喚","feat.summon.d":"公正な天井付き召喚システムで、40体を超える神と英雄を集めよう。",
+ "feat.team.t":"チーム編成","feat.team.d":"5人の部隊を率い、陣営・属性・スキルを組み合わせて強力なシナジーを生み出そう。",
+ "feat.battle.t":"あらゆる戦場へ","feat.battle.d":"全100章のキャンペーン、ランクアリーナ、無限の塔、ダンジョン、そして72の神柱。",
+ "feat.power.t":"力を昇華","feat.power.d":"英雄を育成・星上げ・昇華し、神話級の遺物を鍛えて神の如き強さへ。",
+ "gods.kicker":"神殿","gods.title":"伝説の闘士たち",
+ "gods.body":"ゼウスやオーディンからラーまで――固有スキルと属性の力を宿す神々の陣容を編成しよう。",
+ "gods.drag":"ドラッグして探索",
+ "hero.ares":"アレス","hero.aphrodite":"アフロディーテ","hero.hephaestus":"ヘパイストス","hero.odin":"オーディン","hero.thor":"トール","hero.loki":"ロキ","hero.ra":"ラー","hero.isis":"イシス","hero.anubis":"アヌビス","hero.wukong":"孫悟空","hero.nuwa":"女媧","hero.nezha":"哪吒",
+ "world.kicker":"果てなき戦い","world.arena.t":"ランクアリーナ","world.arena.d":"全サーバーのプレイヤーとチームで競い、シーズンの頂を目指して栄光と報酬を掴め。",
+ "world.kicker2":"さらに高く","world.tower.t":"無限の塔","world.tower.d":"強敵の待つ試練を一層ずつ登り、上るほどに大きな報酬を手にしよう。",
+ "world.kicker3":"偉大なる試練","world.pillars.t":"72の神柱","world.pillars.d":"72の神柱の試練に挑み、守護者を打ち倒し、比類なき神聖な遺物を勝ち取ろう。",
+ "dl.kicker":"基本プレイ無料","dl.title":"昇華への一歩を","dl.body":"iOSとAndroidで神々の戦いに参加。無料ダウンロード――今日、最初の伝説を召喚しよう。",
+ "dl.gnote":"進行状況を保存し複数の端末でプレイできるよう、Googleアカウントでのログインを提供しています。アカウントは本人確認とゲームデータの同期にのみ使用します――詳細はプライバシーポリシーをご覧ください。",
+ "foot.pub":"発行：Bublue Studio","foot.support":"サポート","foot.privacy":"プライバシーポリシー",
+ "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension および関連するマークは Bublue Studio の商標です。",
+ "prereg.cta":"事前登録","prereg.count_suffix":"人の召喚士が事前登録","prereg.next_prefix":"次の報酬解放まで",
+ "prereg.title":"今すぐ事前登録","prereg.sub":"召喚に加わり、全員のためのリリース報酬を解放しよう。",
+ "prereg.email_ph":"メールアドレス","prereg.consent":"リリース通知の受信に同意し、プライバシーポリシーを確認しました。",
+ "prereg.submit":"参加する","prereg.success":"完了！リリース後、ゲーム内でアカウントを連携すると報酬を受け取れます。",
+ "prereg.already":"すでに事前登録済みです — リリースでお会いしましょう！","prereg.err_email":"有効なメールアドレスを入力してください。",
+ "prereg.err_consent":"続けるにはチェックしてください。","prereg.err_generic":"問題が発生しました。もう一度お試しください。",
+ "prereg.reward.gems":"ジェム300個","prereg.reward.divine":"神聖召喚 ×10","prereg.reward.sigil":"昇華の印 ×20","prereg.reward.realm":"領域の鍵 ×10",
+ "toast.soon":"近日公開――お楽しみに！"
+},
+"th":{
+ "nav.about":"เกี่ยวกับ","nav.gods":"ทวยเทพ","nav.world":"โลก","nav.download":"ดาวน์โหลด","nav.play":"เล่นเลย",
+ "hero.eyebrow":"สะสม · ต่อสู้ · ก้าวสู่เทพ",
+ "hero.tagline":"อัญเชิญทวยเทพจากสี่ตำนาน และก้าวจากมนุษย์สู่ตำนาน",
+ "hero.scroll":"เลื่อนลง",
+ "badge.soon":"เร็ว ๆ นี้","badge.ios.top":"ดาวน์โหลดบน","badge.ios.name":"App Store","badge.android.top":"ดาวน์โหลดที่","badge.android.name":"Google Play",
+ "about.kicker":"ระเบียบแห่งทวยเทพได้แตกสลาย",
+ "about.title":"สงครามข้ามสี่ตำนาน",
+ "about.body":"เทพกรีก นอร์ส อียิปต์ และจีน ปะทะกันในโลกที่ลุกเป็นไฟ อัญเชิญเหล่าเทพและวีรบุรุษในตำนาน เชี่ยวชาญการเสริมพลังธาตุ แล้วก้าวจากมนุษย์สู่ตำนาน",
+ "pan.greek":"กรีก","pan.greek.d":"เทพโอลิมปัสแห่งสายฟ้า ท้องทะเล และสงคราม",
+ "pan.norse":"นอร์ส","pan.norse.d":"เหล่าเอซีร์และยักษ์ผู้ผูกพันกับแร็กนาร็อก",
+ "pan.egyptian":"อียิปต์","pan.egyptian.d":"เจ้าแห่งดวงอาทิตย์ ความตาย และการเกิดใหม่",
+ "pan.chinese":"จีน","pan.chinese.d":"เหล่าเซียนอมตะแห่งวังหยก",
+ "feat.kicker":"เส้นทางสู่ความเป็นเทพ","feat.title":"ทุกสิ่งที่ตำนานต้องมี",
+ "feat.summon.t":"อัญเชิญตำนาน","feat.summon.d":"สะสมทวยเทพและวีรบุรุษกว่า 40 ตัว ผ่านระบบอัญเชิญที่ยุติธรรมพร้อมระบบการันตี",
+ "feat.team.t":"จัดทีมของคุณ","feat.team.d":"บัญชาการทีมห้าคน ผสานฝ่าย ธาตุ และสกิลเพื่อการเสริมพลังที่ทรงอานุภาพ",
+ "feat.battle.t":"ต่อสู้ได้ทุกที่","feat.battle.d":"แคมเปญร้อยบท อารีน่าจัดอันดับ หอคอยไร้ที่สิ้นสุด ดันเจียน และ 72 เสาเทพ",
+ "feat.power.t":"ยกระดับพลัง","feat.power.d":"เลเวลอัป เพิ่มดาว และก้าวสู่เทพให้เหล่าฮีโร่ พร้อมตีบวกเรลิกในตำนานสู่พลังดั่งเทพ",
+ "gods.kicker":"วิหารทวยเทพ","gods.title":"ผู้กล้าแห่งตำนาน",
+ "gods.body":"ตั้งแต่ซุสและโอดินไปจนถึงรา—รวบรวมทีมทวยเทพ ที่แต่ละองค์มีสกิลเฉพาะตัวและพลังธาตุ",
+ "gods.drag":"ลากเพื่อสำรวจ",
+ "hero.ares":"แอรีส","hero.aphrodite":"อโฟรไดท์","hero.hephaestus":"เฮเฟสตัส","hero.odin":"โอดิน","hero.thor":"ธอร์","hero.loki":"โลกิ","hero.ra":"รา","hero.isis":"ไอซิส","hero.anubis":"อนูบิส","hero.wukong":"ซุนหงอคง","hero.nuwa":"หนี่วา","hero.nezha":"นาจา",
+ "world.kicker":"การต่อสู้ไม่สิ้นสุด","world.arena.t":"อารีน่าจัดอันดับ","world.arena.d":"นำทีมประลองกับผู้เล่นทั่วทั้งแดน ไต่อันดับประจำฤดูกาลเพื่อเกียรติยศและรางวัล",
+ "world.kicker2":"ก้าวให้สูงขึ้น","world.tower.t":"หอคอยไร้ที่สิ้นสุด","world.tower.d":"ไต่ขึ้นทีละชั้นผ่านบททดสอบที่ยากขึ้นเรื่อย ๆ แต่ละชั้นมีศัตรูที่แกร่งกว่าและรางวัลที่ยิ่งใหญ่กว่า",
+ "world.kicker3":"บททดสอบอันยิ่งใหญ่","world.pillars.t":"72 เสาเทพ","world.pillars.d":"เผชิญบททดสอบทั้งเจ็ดสิบสองเสา ปราบผู้พิทักษ์ และคว้าเรลิกศักดิ์สิทธิ์ที่หาใดเทียบ",
+ "dl.kicker":"เล่นฟรี","dl.title":"เริ่มการก้าวสู่เทพของคุณ","dl.body":"ร่วมสงครามแห่งทวยเทพบน iOS และ Android ดาวน์โหลดฟรี—อัญเชิญตำนานแรกของคุณวันนี้",
+ "dl.gnote":"มีการเข้าสู่ระบบด้วยบัญชี Google เพื่อให้คุณบันทึกความคืบหน้าและเล่นข้ามอุปกรณ์ได้ เราใช้บัญชีของคุณเพียงเพื่อระบุตัวตนและซิงค์ข้อมูลเกมเท่านั้น—ดูรายละเอียดในนโยบายความเป็นส่วนตัว",
+ "foot.pub":"เผยแพร่โดย Bublue Studio","foot.support":"ฝ่ายสนับสนุน","foot.privacy":"นโยบายความเป็นส่วนตัว",
+ "foot.copy":"© 2026 Bublue Studio สงวนลิขสิทธิ์ Beyond God: Ascension และเครื่องหมายที่เกี่ยวข้องเป็นเครื่องหมายการค้าของ Bublue Studio",
+ "prereg.cta":"ลงทะเบียนล่วงหน้า","prereg.count_suffix":"ผู้อัญเชิญลงทะเบียนแล้ว","prereg.next_prefix":"รางวัลถัดไปปลดล็อกที่",
+ "prereg.title":"ลงทะเบียนล่วงหน้าเลย","prereg.sub":"ร่วมการอัญเชิญ และปลดล็อกรางวัลเปิดตัวให้ทุกคน",
+ "prereg.email_ph":"อีเมลของคุณ","prereg.consent":"ฉันยินยอมรับการแจ้งเตือนวันเปิดตัว ตามนโยบายความเป็นส่วนตัว",
+ "prereg.submit":"ฉันเอาด้วย","prereg.success":"สำเร็จ! เมื่อเปิดตัว ผูกบัญชีในเกมเพื่อรับรางวัลได้เลย",
+ "prereg.already":"คุณลงทะเบียนไว้แล้ว — พบกันวันเปิดตัว!","prereg.err_email":"กรุณากรอกอีเมลที่ถูกต้อง",
+ "prereg.err_consent":"กรุณาติ๊กเพื่อดำเนินการต่อ","prereg.err_generic":"เกิดข้อผิดพลาด กรุณาลองใหม่",
+ "prereg.reward.gems":"เพชร 300","prereg.reward.divine":"อัญเชิญศักดิ์สิทธิ์ ×10","prereg.reward.sigil":"ตราก้าวสู่เทพ ×20","prereg.reward.realm":"กุญแจมิติ ×10",
+ "toast.soon":"เร็ว ๆ นี้ — โปรดติดตาม!"
+},
+"id":{
+ "nav.about":"Tentang","nav.gods":"Dewa","nav.world":"Dunia","nav.download":"Unduh","nav.play":"Main Sekarang",
+ "hero.eyebrow":"Kumpulkan · Bertarung · Bangkit",
+ "hero.tagline":"Panggil para dewa dari empat mitologi dan bangkit dari manusia menjadi legenda.",
+ "hero.scroll":"Gulir",
+ "badge.soon":"Segera Hadir","badge.ios.top":"Unduh di","badge.ios.name":"App Store","badge.android.top":"Dapatkan di","badge.android.name":"Google Play",
+ "about.kicker":"Tatanan para dewa telah runtuh",
+ "about.title":"Perang lintas empat mitologi",
+ "about.body":"Panteon Yunani, Norse, Mesir, dan Tiongkok berbenturan dalam dunia yang berperang. Panggil dewa dan jawara legendaris, kuasai sinergi elemen mereka, dan bangkit dari manusia menjadi legenda.",
+ "pan.greek":"Yunani","pan.greek.d":"Dewa Olympus petir, laut, dan perang.",
+ "pan.norse":"Norse","pan.norse.d":"Aesir dan raksasa yang terikat Ragnarok.",
+ "pan.egyptian":"Mesir","pan.egyptian.d":"Penguasa matahari, kematian, dan kelahiran kembali.",
+ "pan.chinese":"Tiongkok","pan.chinese.d":"Para dewa langit dari Istana Giok.",
+ "feat.kicker":"Jalan menuju keilahian","feat.title":"Semua yang dibutuhkan seorang legenda",
+ "feat.summon.t":"Panggil Legenda","feat.summon.d":"Kumpulkan 40+ dewa dan jawara melalui sistem panggil yang adil dengan jaminan pity.",
+ "feat.team.t":"Bangun Timmu","feat.team.d":"Pimpin regu berisi lima dan padukan faksi, elemen, serta skill untuk sinergi yang dahsyat.",
+ "feat.battle.t":"Bertarung di Mana Saja","feat.battle.d":"Kampanye seratus bab, Arena berperingkat, Menara Tanpa Akhir, dungeon, dan 72 Pilar Dewa.",
+ "feat.power.t":"Tingkatkan Kekuatanmu","feat.power.d":"Naikkan level, bintang, dan jelmakan hero-mu, serta tempa relik mitos untuk mencapai kekuatan setara dewa.",
+ "gods.kicker":"Panteon","gods.title":"Jawara legenda",
+ "gods.body":"Dari Zeus dan Odin hingga Ra dan seterusnya — susun jajaran dewa, masing-masing dengan skill khas dan kekuatan elemen.",
+ "gods.drag":"Seret untuk menjelajah",
+ "hero.ares":"Ares","hero.aphrodite":"Aphrodite","hero.hephaestus":"Hephaestus","hero.odin":"Odin","hero.thor":"Thor","hero.loki":"Loki","hero.ra":"Ra","hero.isis":"Isis","hero.anubis":"Anubis","hero.wukong":"Sun Wukong","hero.nuwa":"Nüwa","hero.nezha":"Ne Zha",
+ "world.kicker":"Pertarungan tanpa akhir","world.arena.t":"Arena Berperingkat","world.arena.d":"Adu timmu melawan pemain di seluruh dunia dan naiki tangga musiman demi kejayaan dan hadiah.",
+ "world.kicker2":"Naik lebih tinggi","world.tower.t":"Menara Tanpa Akhir","world.tower.d":"Naiki lantai demi lantai ujian yang kian berat, masing-masing dijaga musuh lebih tangguh dan hadiah kian besar.",
+ "world.kicker3":"Ujian agung","world.pillars.t":"72 Pilar Dewa","world.pillars.d":"Hadapi tujuh puluh dua ujian pilar, kalahkan penjaganya, dan rebut relik ilahi berkekuatan tiada tara.",
+ "dl.kicker":"Gratis dimainkan","dl.title":"Mulai kebangkitanmu","dl.body":"Bergabunglah dalam perang para dewa di iOS dan Android. Gratis diunduh — panggil legenda pertamamu hari ini.",
+ "dl.gnote":"Masuk dengan akun Google disediakan agar kamu bisa menyimpan progres dan bermain lintas perangkat. Kami hanya menggunakan akunmu untuk mengenalimu dan menyinkronkan data permainan — lihat Kebijakan Privasi kami untuk detailnya.",
+ "foot.pub":"Diterbitkan oleh Bublue Studio","foot.support":"Dukungan","foot.privacy":"Kebijakan Privasi",
+ "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension dan semua merek terkait adalah merek dagang Bublue Studio.",
+ "prereg.cta":"Pra-registrasi","prereg.count_suffix":"summoner telah mendaftar","prereg.next_prefix":"Hadiah berikutnya di",
+ "prereg.title":"Pra-registrasi sekarang","prereg.sub":"Ikut memanggil dan buka hadiah peluncuran untuk semua.",
+ "prereg.email_ph":"Alamat email kamu","prereg.consent":"Saya setuju menerima notifikasi peluncuran, sesuai Kebijakan Privasi.",
+ "prereg.submit":"Ikut daftar","prereg.success":"Berhasil! Saat rilis, tautkan akunmu di dalam game untuk klaim hadiah.",
+ "prereg.already":"Kamu sudah terdaftar — sampai jumpa saat rilis!","prereg.err_email":"Masukkan alamat email yang valid.",
+ "prereg.err_consent":"Centang kotak untuk melanjutkan.","prereg.err_generic":"Terjadi kesalahan. Coba lagi.",
+ "prereg.reward.gems":"300 Permata","prereg.reward.divine":"10× Panggilan Suci","prereg.reward.sigil":"20× Sigil Kenaikan","prereg.reward.realm":"10× Kunci Alam",
+ "toast.soon":"Segera hadir — nantikan!"
+},
+"vi":{
+ "nav.about":"Giới Thiệu","nav.gods":"Chư Thần","nav.world":"Thế Giới","nav.download":"Tải Về","nav.play":"Chơi Ngay",
+ "hero.eyebrow":"Thu Thập · Chiến Đấu · Thăng Thiên",
+ "hero.tagline":"Triệu hồi chư thần từ bốn thần thoại và vươn từ phàm nhân thành huyền thoại.",
+ "hero.scroll":"Cuộn",
+ "badge.soon":"Sắp Ra Mắt","badge.ios.top":"Tải trên","badge.ios.name":"App Store","badge.android.top":"Tải trên","badge.android.name":"Google Play",
+ "about.kicker":"Trật tự thần thánh đã sụp đổ",
+ "about.title":"Cuộc chiến xuyên bốn thần thoại",
+ "about.body":"Các vị thần Hy Lạp, Bắc Âu, Ai Cập và Trung Hoa va chạm trong một thế giới ngập chiến tranh. Triệu hồi chư thần và anh hùng huyền thoại, tinh thông sức mạnh nguyên tố của họ, và vươn từ phàm nhân thành huyền thoại.",
+ "pan.greek":"Hy Lạp","pan.greek.d":"Các vị thần Olympus của sấm sét, biển cả và chiến tranh.",
+ "pan.norse":"Bắc Âu","pan.norse.d":"Chư thần Aesir và người khổng lồ gắn với Ragnarok.",
+ "pan.egyptian":"Ai Cập","pan.egyptian.d":"Những chúa tể của mặt trời, cái chết và tái sinh.",
+ "pan.chinese":"Trung Hoa","pan.chinese.d":"Các vị tiên thần chốn Thiên Đình.",
+ "feat.kicker":"Con đường thành thần","feat.title":"Mọi thứ một huyền thoại cần",
+ "feat.summon.t":"Triệu Hồi Huyền Thoại","feat.summon.d":"Thu thập hơn 40 vị thần và anh hùng qua hệ thống triệu hồi công bằng có đảm bảo (pity).",
+ "feat.team.t":"Xây Dựng Đội Hình","feat.team.d":"Chỉ huy đội năm người và kết hợp phe phái, nguyên tố cùng kỹ năng để tạo cộng hưởng hủy diệt.",
+ "feat.battle.t":"Chiến Đấu Mọi Nơi","feat.battle.d":"Chiến dịch một trăm chương, Đấu Trường xếp hạng, Tháp Vô Tận, hầm ngục và 72 Trụ Thần.",
+ "feat.power.t":"Nâng Tầm Sức Mạnh","feat.power.d":"Lên cấp, tăng sao và thăng cấp anh hùng, rèn di vật huyền thoại để đạt tới sức mạnh sánh ngang thần linh.",
+ "gods.kicker":"Đền Chư Thần","gods.title":"Những chiến thần huyền thoại",
+ "gods.body":"Từ Zeus và Odin đến Ra và hơn thế nữa — tập hợp đội hình chư thần, mỗi vị mang kỹ năng đặc trưng và sức mạnh nguyên tố.",
+ "gods.drag":"Kéo để khám phá",
+ "hero.ares":"Ares","hero.aphrodite":"Aphrodite","hero.hephaestus":"Hephaestus","hero.odin":"Odin","hero.thor":"Thor","hero.loki":"Loki","hero.ra":"Ra","hero.isis":"Isis","hero.anubis":"Anubis","hero.wukong":"Tôn Ngộ Không","hero.nuwa":"Nữ Oa","hero.nezha":"Na Tra",
+ "world.kicker":"Chiến đấu bất tận","world.arena.t":"Đấu Trường Xếp Hạng","world.arena.d":"Đọ sức đội hình với người chơi khắp thế giới và leo bảng xếp hạng theo mùa để giành vinh quang và phần thưởng.",
+ "world.kicker2":"Vươn cao hơn","world.tower.t":"Tháp Vô Tận","world.tower.d":"Leo từng tầng thử thách ngày một khó, mỗi tầng có kẻ địch mạnh hơn và phần thưởng lớn hơn.",
+ "world.kicker3":"Những thử thách vĩ đại","world.pillars.t":"72 Trụ Thần","world.pillars.d":"Đối mặt bảy mươi hai thử thách của các trụ thần, đánh bại người canh giữ và giành di vật thần thánh có sức mạnh vô song.",
+ "dl.kicker":"Chơi miễn phí","dl.title":"Bắt đầu hành trình thăng thiên","dl.body":"Tham gia cuộc chiến chư thần trên iOS và Android. Tải miễn phí — triệu hồi huyền thoại đầu tiên của bạn hôm nay.",
+ "dl.gnote":"Chúng tôi cung cấp đăng nhập bằng tài khoản Google để bạn lưu tiến trình và chơi trên nhiều thiết bị. Chúng tôi chỉ dùng tài khoản của bạn để nhận diện bạn và đồng bộ dữ liệu trò chơi — xem Chính Sách Bảo Mật để biết chi tiết.",
+ "foot.pub":"Phát hành bởi Bublue Studio","foot.support":"Hỗ Trợ","foot.privacy":"Chính Sách Bảo Mật",
+ "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension và mọi nhãn hiệu liên quan là thương hiệu của Bublue Studio.",
+ "prereg.cta":"Đăng ký trước","prereg.count_suffix":"summoner đã đăng ký","prereg.next_prefix":"Phần thưởng tiếp theo mở tại",
+ "prereg.title":"Đăng ký trước ngay","prereg.sub":"Tham gia triệu hồi và mở khóa phần thưởng ra mắt cho tất cả.",
+ "prereg.email_ph":"Địa chỉ email của bạn","prereg.consent":"Tôi đồng ý nhận thông báo ra mắt, theo Chính Sách Bảo Mật.",
+ "prereg.submit":"Tham gia ngay","prereg.success":"Xong! Khi ra mắt, hãy liên kết tài khoản trong game để nhận thưởng.",
+ "prereg.already":"Bạn đã đăng ký rồi — hẹn gặp khi ra mắt!","prereg.err_email":"Vui lòng nhập email hợp lệ.",
+ "prereg.err_consent":"Vui lòng tích chọn để tiếp tục.","prereg.err_generic":"Đã có lỗi xảy ra. Vui lòng thử lại.",
+ "prereg.reward.gems":"300 Kim Cương","prereg.reward.divine":"10× Triệu Hồi Thần Thánh","prereg.reward.sigil":"20× Ấn Thăng Thiên","prereg.reward.realm":"10× Chìa Khóa Cảnh Giới",
+ "toast.soon":"Sắp ra mắt — hãy đón chờ!"
+}
+};
+
+/* ---------------- apply language ---------------- */
+function pickDefault(){
+  const saved=localStorage.getItem("bg_lang");
+  if(saved&&I18N[saved])return saved;
+  const n=(navigator.language||"en").toLowerCase();
+  if(n.startsWith("zh")){return (n.includes("tw")||n.includes("hk")||n.includes("hant"))?"zh-TW":"zh-CN";}
+  if(n.startsWith("ko"))return "ko";
+  if(n.startsWith("ja"))return "ja";
+  if(n.startsWith("th"))return "th";
+  if(n.startsWith("id")||n.startsWith("in"))return "id";
+  if(n.startsWith("vi"))return "vi";
+  return "en";
+}
+function applyLang(code){
+  const dict=I18N[code]||I18N.en;
+  document.documentElement.lang=code;
+  document.documentElement.setAttribute("data-lang",code);
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n");
+    if(dict[k]!=null)el.textContent=dict[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const k=el.getAttribute("data-i18n-ph");
+    if(dict[k]!=null)el.setAttribute("placeholder",dict[k]);
+  });
+  if(window.__renderTracker)window.__renderTracker();
+  const meta=LANGS.find(l=>l.code===code);
+  document.getElementById("langLabel").textContent=meta?meta.label:"English";
+  document.querySelectorAll("#langMenu li").forEach(li=>li.classList.toggle("active",li.dataset.code===code));
+  localStorage.setItem("bg_lang",code);
+}
+
+/* build language menu */
+(function(){
+  const menu=document.getElementById("langMenu");
+  LANGS.forEach(l=>{
+    const li=document.createElement("li");
+    li.textContent=l.label;li.dataset.code=l.code;li.setAttribute("role","menuitem");
+    li.onclick=()=>{applyLang(l.code);document.getElementById("lang").classList.remove("open");};
+    menu.appendChild(li);
+  });
+  applyLang(pickDefault());
+})();
+
+/* language dropdown toggle */
+const lang=document.getElementById("lang"),langBtn=document.getElementById("langBtn");
+langBtn.onclick=e=>{e.stopPropagation();const o=lang.classList.toggle("open");langBtn.setAttribute("aria-expanded",o);};
+document.addEventListener("click",()=>{lang.classList.remove("open");langBtn.setAttribute("aria-expanded","false");});
+
+/* nav scroll state */
+const nav=document.getElementById("nav");
+const onScroll=()=>{nav.classList.toggle("scrolled",window.scrollY>40);};
+onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+/* mobile menu */
+const burger=document.getElementById("burger"),mobnav=document.getElementById("mobnav");
+burger.onclick=e=>{e.stopPropagation();mobnav.classList.toggle("open");};
+mobnav.querySelectorAll("a").forEach(a=>a.onclick=()=>mobnav.classList.remove("open"));
+
+/* reveal on scroll */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+},{threshold:.16,rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* parallax hero + world bands */
+const heroBg=document.getElementById("heroBg");
+const bands=[...document.querySelectorAll(".world-band .wbg")];
+let ticking=false;
+function parallax(){
+  const y=window.scrollY;
+  if(heroBg)heroBg.style.transform="translate3d(0,"+(y*0.28)+"px,0)";
+  bands.forEach(b=>{
+    const r=b.parentElement.getBoundingClientRect();
+    const off=(r.top+r.height/2-window.innerHeight/2)*-0.08;
+    b.style.transform="translate3d(0,"+off+"px,0) scale(1.12)";
+  });
+  ticking=false;
+}
+window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(parallax);ticking=true;}},{passive:true});
+parallax();
+
+/* coming-soon toast */
+const toast=document.getElementById("toast");let tt;
+document.querySelectorAll("[data-soon]").forEach(b=>{
+  b.addEventListener("click",()=>{
+    const d=I18N[document.documentElement.getAttribute("data-lang")]||I18N.en;
+    toast.textContent=d["toast.soon"]||I18N.en["toast.soon"];
+    toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),2600);
+  });
+});
+
+/* ---------------- pre-registration ---------------- */
+// Set these two when the prereg-api service + Cloudflare Turnstile are deployed:
+const PREREG_API = "";              // e.g. "https://api.beyondgod.bubluestudio.com"
+const TURNSTILE_SITEKEY = "";       // Cloudflare Turnstile site key
+
+const dictNow = () => I18N[document.documentElement.getAttribute("data-lang")] || I18N.en;
+const fmtN = (n) => { try { return Number(n).toLocaleString(document.documentElement.lang); } catch { return String(n); } };
+
+let lastStats = null;
+const trackerEl = document.getElementById("tracker");
+// Milestone index → reward icon (aligns with the server ladder order: gems, tickets, scroll, sigil).
+const MILESTONE_ICONS = ["./assets/items/gems.png","./assets/items/divine.png","./assets/items/sigil.png","./assets/items/realm.png"];
+const shortN = (n)=> n>=1000 ? (n%1000===0 ? n/1000+"K" : (n/1000).toFixed(1)+"K") : String(n);
+function renderTracker(){
+  if(!lastStats || !lastStats.milestones){ trackerEl.classList.add("hidden"); return; }
+  const d = dictNow();
+  document.getElementById("trackCount").textContent = fmtN(lastStats.total);
+
+  // reward-icon ladder
+  const ladder = document.getElementById("ladder");
+  ladder.innerHTML = lastStats.milestones.map((m,i)=>{
+    const icon = MILESTONE_ICONS[i] || MILESTONE_ICONS[MILESTONE_ICONS.length-1];
+    const label = (d[m.labelKey]||"").replace(/"/g,"");
+    return `<div class="mstone ${m.reached?'reached':''}" title="${shortN(m.at)} · ${label}">
+      <div class="mi"><img src="${icon}" alt="" loading="lazy"><span class="chk">✓</span></div>
+      <span class="mat">${shortN(m.at)}</span></div>`;
+  }).join("");
+
+  // progress bar: from the last reached floor to the next milestone
+  const nm = lastStats.nextMilestone;
+  const prev = lastStats.milestones.filter(m=>m.reached).map(m=>m.at).pop() || 0;
+  const pct = nm ? Math.max(4, Math.min(100, ((lastStats.total - prev) / (nm.at - prev)) * 100)) : 100;
+  document.getElementById("trackFill").style.width = pct + "%";
+
+  trackerEl.classList.remove("hidden");
+}
+window.__renderTracker = renderTracker;
+
+async function loadStats(){
+  if(!PREREG_API) return;                 // not deployed yet → tracker stays hidden
+  try{
+    const r = await fetch(PREREG_API + "/api/stats", { mode:"cors", cache:"no-store" });
+    if(!r.ok) return;
+    lastStats = await r.json();
+    renderTracker();
+  }catch{ /* API unreachable → leave tracker hidden, silently */ }
+}
+loadStats();
+
+// ---- modal ----
+const pModal=document.getElementById("preregModal");
+const pForm=document.getElementById("preregForm");
+const pEmail=document.getElementById("preregEmail");
+const pConsent=document.getElementById("preregConsent");
+const pSubmit=document.getElementById("preregSubmit");
+const pMsg=document.getElementById("preregMsg");
+let turnstileToken="", turnstileWidget=null;
+
+function openModal(){
+  // Service not wired yet → degrade to the same "coming soon" toast as the store badges.
+  if(!PREREG_API){
+    const d=dictNow();
+    toast.textContent=d["toast.soon"]||I18N.en["toast.soon"];
+    toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),2600);
+    return;
+  }
+  pModal.classList.add("open"); pMsg.textContent=""; pMsg.className="modal-msg"; setTimeout(()=>pEmail.focus(),50);
+}
+function closeModal(){ pModal.classList.remove("open"); }
+document.getElementById("preregOpen").addEventListener("click",openModal);
+document.getElementById("preregClose").addEventListener("click",closeModal);
+pModal.addEventListener("click",e=>{ if(e.target===pModal) closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+
+// ---- Turnstile (only if configured) ----
+if(TURNSTILE_SITEKEY){
+  const s=document.createElement("script");
+  s.src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  s.async=true; s.defer=true;
+  window.__tsReady=()=>{
+    turnstileWidget=window.turnstile.render("#turnstileBox",{
+      sitekey:TURNSTILE_SITEKEY, theme:"dark",
+      callback:(t)=>{turnstileToken=t;}, "expired-callback":()=>{turnstileToken="";}
+    });
+  };
+  s.src+="&onload=__tsReady";
+  document.head.appendChild(s);
+}
+
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+pForm.addEventListener("submit",async(e)=>{
+  e.preventDefault();
+  const d=dictNow();
+  const email=pEmail.value.trim();
+  pMsg.className="modal-msg";
+  if(!EMAIL_RE.test(email)){ pMsg.textContent=d["prereg.err_email"]; pMsg.classList.add("err"); return; }
+  if(!pConsent.checked){ pMsg.textContent=d["prereg.err_consent"]; pMsg.classList.add("err"); return; }
+  if(!PREREG_API){ pMsg.textContent=d["prereg.err_generic"]; pMsg.classList.add("err"); return; }
+  // When Turnstile is configured, require a solved token; otherwise (local/dev) send a placeholder.
+  let tsToken = turnstileToken;
+  if(TURNSTILE_SITEKEY){
+    if(!tsToken){ pMsg.textContent=d["prereg.err_generic"]; pMsg.classList.add("err"); return; }
+  } else { tsToken = "nocaptcha-dev"; }
+  pSubmit.disabled=true;
+  try{
+    const r=await fetch(PREREG_API+"/api/preregister",{
+      method:"POST", mode:"cors", headers:{"content-type":"application/json"},
+      body:JSON.stringify({ email, consent:true, locale:document.documentElement.lang, turnstile:tsToken })
+    });
+    const data=await r.json().catch(()=>({}));
+    if(r.ok && data.registered){
+      pMsg.textContent = data.alreadyRegistered ? d["prereg.already"] : d["prereg.success"];
+      pMsg.classList.add("ok");
+      pForm.reset();
+      if(typeof data.total==="number"){ lastStats={...(lastStats||{milestones:[]}),...data}; if(!lastStats.milestones)lastStats.milestones=[]; renderTracker(); }
+      loadStats();
+    } else {
+      const emailErrs = ["invalid_email","email_disposable","email_undeliverable"];
+      pMsg.textContent = d["prereg."+(emailErrs.includes(data.error)?"err_email":data.error==="consent_required"?"err_consent":"err_generic")] || d["prereg.err_generic"];
+      pMsg.classList.add("err");
+    }
+  }catch{
+    pMsg.textContent=d["prereg.err_generic"]; pMsg.classList.add("err");
+  }finally{
+    pSubmit.disabled=false;
+    if(turnstileWidget!==null && window.turnstile) window.turnstile.reset(turnstileWidget);
+    turnstileToken="";
+  }
+});
+</script>
 </body>
 </html>
