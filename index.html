@@ -1018,11 +1018,27 @@ const TURNSTILE_SITEKEY = "0x4AAAAAAENn-VLbYPecp0YD";  // Cloudflare Turnstile s
 const dictNow = () => I18N[document.documentElement.getAttribute("data-lang")] || I18N.en;
 const fmtN = (n) => { try { return Number(n).toLocaleString(document.documentElement.lang); } catch { return String(n); } };
 
-let lastStats = null;
 const trackerEl = document.getElementById("tracker");
-// Milestone index → reward icon (aligns with the server ladder order: gems, tickets, scroll, sigil).
+// Milestone index → reward icon (aligns with the server ladder order: gems, divine, sigil, realm).
 const MILESTONE_ICONS = ["./assets/items/gems.png","./assets/items/divine.png","./assets/items/sigil.png","./assets/items/realm.png"];
 const shortN = (n)=> n>=1000 ? (n%1000===0 ? n/1000+"K" : (n/1000).toFixed(1)+"K") : String(n);
+
+// Client-side fallback so the milestone UI is NEVER blank, even if the API is slow/down. Mirrors the
+// server ladder (prereg-rewards.ts) + DISPLAY_BASELINE. The live /api/stats overrides this on success.
+const FALLBACK_LADDER = [
+  { at:10000, labelKey:"prereg.reward.gems" }, { at:25000, labelKey:"prereg.reward.divine" },
+  { at:50000, labelKey:"prereg.reward.sigil" }, { at:100000, labelKey:"prereg.reward.realm" }
+];
+const FALLBACK_BASELINE = 43000;
+function statsFromTotal(total){
+  return {
+    total: total,
+    milestones: FALLBACK_LADDER.map(function(m){ return { at:m.at, labelKey:m.labelKey, reached: total>=m.at }; }),
+    nextMilestone: FALLBACK_LADDER.filter(function(m){ return total<m.at; })[0] || null
+  };
+}
+// Render immediately with the fallback so the tracker always shows.
+let lastStats = statsFromTotal(FALLBACK_BASELINE);
 function renderTracker(){
   if(!lastStats || !lastStats.milestones){ trackerEl.classList.add("hidden"); return; }
   const d = dictNow();
@@ -1047,15 +1063,19 @@ function renderTracker(){
   trackerEl.classList.remove("hidden");
 }
 window.__renderTracker = renderTracker;
+renderTracker();  // show the fallback ladder right away — never blank
 
-async function loadStats(){
-  if(!PREREG_API) return;                 // not deployed yet → tracker stays hidden
+async function loadStats(attempt){
+  if(!PREREG_API) return;                 // not wired → keep the fallback ladder visible
   try{
     const r = await fetch(PREREG_API + "/api/stats", { mode:"cors", cache:"no-store" });
-    if(!r.ok) return;
-    lastStats = await r.json();
-    renderTracker();
-  }catch{ /* API unreachable → leave tracker hidden, silently */ }
+    if(!r.ok) throw new Error("bad status");
+    const data = await r.json();
+    if(data && Array.isArray(data.milestones)){ lastStats = data; renderTracker(); }
+  }catch(e){
+    // API slow/down → keep the fallback ladder (already rendered); retry a couple times.
+    if((attempt||0) < 3) setTimeout(function(){ loadStats((attempt||0)+1); }, 2000*((attempt||0)+1));
+  }
 }
 loadStats();
 
