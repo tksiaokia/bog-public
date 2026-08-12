@@ -316,6 +316,12 @@ footer{background:#07060c;border-top:1px solid var(--line)}
 .modal-submit:disabled{opacity:.6;cursor:default}
 .modal-msg{margin-top:14px;font-size:14px;text-align:center;min-height:20px}
 .modal-msg.ok{color:#7fd98a}.modal-msg.err{color:#e0655d}
+.prereg-success{text-align:center;padding:6px 0 2px}
+.prereg-success .success-check{width:66px;height:66px;margin:2px auto 18px;border-radius:50%;
+  display:grid;place-items:center;font-size:34px;font-weight:900;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));box-shadow:0 10px 26px rgba(199,154,75,.45)}
+.prereg-success h3{font-size:25px;margin-bottom:10px}
+.prereg-success p{color:var(--muted);font-size:15px;line-height:1.6;margin:0 auto 24px;max-width:34ch}
 .cf-turnstile{margin-top:16px;display:flex;justify-content:center}
 
 /* toast */
@@ -594,6 +600,12 @@ footer{background:#07060c;border-top:1px solid var(--line)}
       <button class="modal-submit" id="preregSubmit" type="submit" data-i18n="prereg.submit">Count me in</button>
       <div class="modal-msg" id="preregMsg"></div>
     </form>
+    <div class="prereg-success" id="preregSuccess" style="display:none">
+      <div class="success-check">✓</div>
+      <h3 data-i18n="prereg.success_title">You're in!</h3>
+      <p id="preregSuccessMsg"></p>
+      <button class="modal-submit" id="preregDone" type="button" data-i18n="prereg.done">Done</button>
+    </div>
   </div>
 </div>
 
@@ -645,9 +657,10 @@ const I18N={
  "prereg.cta":"Pre-register","prereg.count_suffix":"summoners pre-registered","prereg.next_prefix":"Next reward at",
  "prereg.title":"Pre-register now","prereg.sub":"Join the summoning and unlock launch rewards for everyone.",
  "prereg.email_ph":"Your email address","prereg.consent":"I agree to receive a launch notification, per the Privacy Policy.",
- "prereg.submit":"Count me in","prereg.success":"You're in! At launch, bind your account in-game to claim the rewards.",
+ "prereg.submit":"Count me in","prereg.success":"At launch, bind your account in-game to claim your rewards. See you there!",
  "prereg.already":"You're already registered — see you at launch!","prereg.err_email":"Please enter a valid email address.",
  "prereg.err_consent":"Please tick the box to continue.","prereg.err_generic":"Something went wrong. Please try again.",
+ "prereg.success_title":"You're in!","prereg.done":"Done",
  "prereg.reward.gems":"300 Gems","prereg.reward.divine":"10× Divine Summon","prereg.reward.sigil":"20× Sigil of Ascension","prereg.reward.realm":"10× Realm Key"
 },
 "zh-CN":{
@@ -682,9 +695,10 @@ const I18N={
  "prereg.cta":"预约","prereg.count_suffix":"位召唤师已预约","prereg.next_prefix":"下个奖励解锁于",
  "prereg.title":"立即预约","prereg.sub":"加入召唤，为所有玩家解锁开服奖励。",
  "prereg.email_ph":"你的电子邮箱","prereg.consent":"我同意接收开服通知，并已阅读隐私政策。",
- "prereg.submit":"算我一个","prereg.success":"预约成功！开服后在游戏内绑定账号即可领取奖励。",
+ "prereg.submit":"算我一个","prereg.success":"开服后在游戏内绑定账号即可领取奖励，开服见！",
  "prereg.already":"你已预约——开服见！","prereg.err_email":"请输入有效的电子邮箱。",
  "prereg.err_consent":"请勾选以继续。","prereg.err_generic":"出错了，请重试。",
+ "prereg.success_title":"预约成功！","prereg.done":"完成",
  "prereg.reward.gems":"300 钻石","prereg.reward.divine":"神圣召唤 ×10","prereg.reward.sigil":"飞升印记 ×20","prereg.reward.realm":"境界钥匙 ×10",
  "toast.soon":"敬请期待，尽情关注！"
 },
@@ -720,9 +734,10 @@ const I18N={
  "prereg.cta":"預約","prereg.count_suffix":"位召喚師已預約","prereg.next_prefix":"下個獎勵解鎖於",
  "prereg.title":"立即預約","prereg.sub":"加入召喚，為所有玩家解鎖開服獎勵。",
  "prereg.email_ph":"你的電子郵箱","prereg.consent":"我同意接收開服通知，並已閱讀隱私政策。",
- "prereg.submit":"算我一個","prereg.success":"預約成功！開服後在遊戲內綁定帳號即可領取獎勵。",
+ "prereg.submit":"算我一個","prereg.success":"開服後在遊戲內綁定帳號即可領取獎勵，開服見！",
  "prereg.already":"你已預約——開服見！","prereg.err_email":"請輸入有效的電子郵箱。",
  "prereg.err_consent":"請勾選以繼續。","prereg.err_generic":"發生錯誤，請重試。",
+ "prereg.success_title":"預約成功！","prereg.done":"完成",
  "prereg.reward.gems":"300 鑽石","prereg.reward.divine":"神聖召喚 ×10","prereg.reward.sigil":"飛昇印記 ×20","prereg.reward.realm":"境界鑰匙 ×10",
  "toast.soon":"敬請期待，盡情關注！"
 },
@@ -758,9 +773,10 @@ const I18N={
  "prereg.cta":"사전예약","prereg.count_suffix":"명의 소환사가 사전예약했어요","prereg.next_prefix":"다음 보상 해금까지",
  "prereg.title":"지금 사전예약","prereg.sub":"소환에 동참하고 모두를 위한 출시 보상을 해금하세요.",
  "prereg.email_ph":"이메일 주소","prereg.consent":"출시 알림 수신에 동의하며 개인정보 처리방침을 확인했습니다.",
- "prereg.submit":"참여하기","prereg.success":"완료됐어요! 출시 후 게임에서 계정을 연동하면 보상을 받을 수 있어요.",
+ "prereg.submit":"참여하기","prereg.success":"출시 후 게임에서 계정을 연동하면 보상을 받을 수 있어요. 출시 때 만나요!",
  "prereg.already":"이미 사전예약하셨어요 — 출시 때 만나요!","prereg.err_email":"올바른 이메일 주소를 입력해 주세요.",
  "prereg.err_consent":"계속하려면 체크해 주세요.","prereg.err_generic":"문제가 발생했어요. 다시 시도해 주세요.",
+ "prereg.success_title":"완료됐어요!","prereg.done":"확인",
  "prereg.reward.gems":"젬 300개","prereg.reward.divine":"신성 소환 ×10","prereg.reward.sigil":"승천의 인장 ×20","prereg.reward.realm":"차원의 열쇠 ×10",
  "toast.soon":"곧 출시됩니다 — 기대해 주세요!"
 },
@@ -796,9 +812,10 @@ const I18N={
  "prereg.cta":"事前登録","prereg.count_suffix":"人の召喚士が事前登録","prereg.next_prefix":"次の報酬解放まで",
  "prereg.title":"今すぐ事前登録","prereg.sub":"召喚に加わり、全員のためのリリース報酬を解放しよう。",
  "prereg.email_ph":"メールアドレス","prereg.consent":"リリース通知の受信に同意し、プライバシーポリシーを確認しました。",
- "prereg.submit":"参加する","prereg.success":"完了！リリース後、ゲーム内でアカウントを連携すると報酬を受け取れます。",
+ "prereg.submit":"参加する","prereg.success":"リリース後、ゲーム内でアカウントを連携すると報酬を受け取れます。お楽しみに！",
  "prereg.already":"すでに事前登録済みです — リリースでお会いしましょう！","prereg.err_email":"有効なメールアドレスを入力してください。",
  "prereg.err_consent":"続けるにはチェックしてください。","prereg.err_generic":"問題が発生しました。もう一度お試しください。",
+ "prereg.success_title":"登録完了！","prereg.done":"完了",
  "prereg.reward.gems":"ジェム300個","prereg.reward.divine":"神聖召喚 ×10","prereg.reward.sigil":"昇華の印 ×20","prereg.reward.realm":"領域の鍵 ×10",
  "toast.soon":"近日公開――お楽しみに！"
 },
@@ -834,9 +851,10 @@ const I18N={
  "prereg.cta":"ลงทะเบียนล่วงหน้า","prereg.count_suffix":"ผู้อัญเชิญลงทะเบียนแล้ว","prereg.next_prefix":"รางวัลถัดไปปลดล็อกที่",
  "prereg.title":"ลงทะเบียนล่วงหน้าเลย","prereg.sub":"ร่วมการอัญเชิญ และปลดล็อกรางวัลเปิดตัวให้ทุกคน",
  "prereg.email_ph":"อีเมลของคุณ","prereg.consent":"ฉันยินยอมรับการแจ้งเตือนวันเปิดตัว ตามนโยบายความเป็นส่วนตัว",
- "prereg.submit":"ฉันเอาด้วย","prereg.success":"สำเร็จ! เมื่อเปิดตัว ผูกบัญชีในเกมเพื่อรับรางวัลได้เลย",
+ "prereg.submit":"ฉันเอาด้วย","prereg.success":"เมื่อเปิดตัว ผูกบัญชีในเกมเพื่อรับรางวัลได้เลย แล้วพบกัน!",
  "prereg.already":"คุณลงทะเบียนไว้แล้ว — พบกันวันเปิดตัว!","prereg.err_email":"กรุณากรอกอีเมลที่ถูกต้อง",
  "prereg.err_consent":"กรุณาติ๊กเพื่อดำเนินการต่อ","prereg.err_generic":"เกิดข้อผิดพลาด กรุณาลองใหม่",
+ "prereg.success_title":"สำเร็จแล้ว!","prereg.done":"เสร็จสิ้น",
  "prereg.reward.gems":"เพชร 300","prereg.reward.divine":"อัญเชิญศักดิ์สิทธิ์ ×10","prereg.reward.sigil":"ตราก้าวสู่เทพ ×20","prereg.reward.realm":"กุญแจมิติ ×10",
  "toast.soon":"เร็ว ๆ นี้ — โปรดติดตาม!"
 },
@@ -872,9 +890,10 @@ const I18N={
  "prereg.cta":"Pra-registrasi","prereg.count_suffix":"summoner telah mendaftar","prereg.next_prefix":"Hadiah berikutnya di",
  "prereg.title":"Pra-registrasi sekarang","prereg.sub":"Ikut memanggil dan buka hadiah peluncuran untuk semua.",
  "prereg.email_ph":"Alamat email kamu","prereg.consent":"Saya setuju menerima notifikasi peluncuran, sesuai Kebijakan Privasi.",
- "prereg.submit":"Ikut daftar","prereg.success":"Berhasil! Saat rilis, tautkan akunmu di dalam game untuk klaim hadiah.",
+ "prereg.submit":"Ikut daftar","prereg.success":"Saat rilis, tautkan akunmu di dalam game untuk klaim hadiah. Sampai jumpa!",
  "prereg.already":"Kamu sudah terdaftar — sampai jumpa saat rilis!","prereg.err_email":"Masukkan alamat email yang valid.",
  "prereg.err_consent":"Centang kotak untuk melanjutkan.","prereg.err_generic":"Terjadi kesalahan. Coba lagi.",
+ "prereg.success_title":"Berhasil!","prereg.done":"Selesai",
  "prereg.reward.gems":"300 Permata","prereg.reward.divine":"10× Panggilan Suci","prereg.reward.sigil":"20× Sigil Kenaikan","prereg.reward.realm":"10× Kunci Alam",
  "toast.soon":"Segera hadir — nantikan!"
 },
@@ -910,9 +929,10 @@ const I18N={
  "prereg.cta":"Đăng ký trước","prereg.count_suffix":"summoner đã đăng ký","prereg.next_prefix":"Phần thưởng tiếp theo mở tại",
  "prereg.title":"Đăng ký trước ngay","prereg.sub":"Tham gia triệu hồi và mở khóa phần thưởng ra mắt cho tất cả.",
  "prereg.email_ph":"Địa chỉ email của bạn","prereg.consent":"Tôi đồng ý nhận thông báo ra mắt, theo Chính Sách Bảo Mật.",
- "prereg.submit":"Tham gia ngay","prereg.success":"Xong! Khi ra mắt, hãy liên kết tài khoản trong game để nhận thưởng.",
+ "prereg.submit":"Tham gia ngay","prereg.success":"Khi ra mắt, hãy liên kết tài khoản trong game để nhận thưởng. Hẹn gặp lại!",
  "prereg.already":"Bạn đã đăng ký rồi — hẹn gặp khi ra mắt!","prereg.err_email":"Vui lòng nhập email hợp lệ.",
  "prereg.err_consent":"Vui lòng tích chọn để tiếp tục.","prereg.err_generic":"Đã có lỗi xảy ra. Vui lòng thử lại.",
+ "prereg.success_title":"Thành công!","prereg.done":"Xong",
  "prereg.reward.gems":"300 Kim Cương","prereg.reward.divine":"10× Triệu Hồi Thần Thánh","prereg.reward.sigil":"20× Ấn Thăng Thiên","prereg.reward.realm":"10× Chìa Khóa Cảnh Giới",
  "toast.soon":"Sắp ra mắt — hãy đón chờ!"
 }
@@ -1099,6 +1119,19 @@ const pSubmit=document.getElementById("preregSubmit");
 const pMsg=document.getElementById("preregMsg");
 let turnstileToken="", turnstileWidget=null;
 
+const pSuccess=document.getElementById("preregSuccess");
+const pSub=document.querySelector("#preregModal .msub");
+const pTitle=document.getElementById("preregTitle");
+function showFormView(){
+  pForm.style.display=""; pTitle.style.display=""; pSub.style.display="";
+  pSuccess.style.display="none";
+  pForm.reset(); pMsg.textContent=""; pMsg.className="modal-msg"; pSubmit.disabled=false;
+}
+function showSuccessView(msg){
+  pForm.style.display="none"; pTitle.style.display="none"; pSub.style.display="none";
+  document.getElementById("preregSuccessMsg").textContent=msg;
+  pSuccess.style.display="block";
+}
 function openModal(){
   // Service not wired yet → degrade to the same "coming soon" toast as the store badges.
   if(!PREREG_API){
@@ -1107,11 +1140,13 @@ function openModal(){
     toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),2600);
     return;
   }
-  pModal.classList.add("open"); pMsg.textContent=""; pMsg.className="modal-msg"; setTimeout(()=>pEmail.focus(),50);
+  showFormView();                       // always open on a fresh form (never the stale success view)
+  pModal.classList.add("open"); setTimeout(()=>pEmail.focus(),50);
 }
 function closeModal(){ pModal.classList.remove("open"); }
 document.getElementById("preregOpen").addEventListener("click",openModal);
 document.getElementById("preregClose").addEventListener("click",closeModal);
+document.getElementById("preregDone").addEventListener("click",closeModal);
 pModal.addEventListener("click",e=>{ if(e.target===pModal) closeModal(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
 
@@ -1152,11 +1187,11 @@ pForm.addEventListener("submit",async(e)=>{
     });
     const data=await r.json().catch(()=>({}));
     if(r.ok && data.registered){
-      pMsg.textContent = data.alreadyRegistered ? d["prereg.already"] : d["prereg.success"];
-      pMsg.classList.add("ok");
-      pForm.reset();
-      if(typeof data.total==="number"){ lastStats={...(lastStats||{milestones:[]}),...data}; if(!lastStats.milestones)lastStats.milestones=[]; renderTracker(); }
-      loadStats();
+      // Swap to the success view so there's no live form to accidentally re-submit.
+      showSuccessView(data.alreadyRegistered ? d["prereg.already"] : d["prereg.success"]);
+      if(typeof data.total==="number"){ lastStats=statsFromTotal(data.total); renderTracker(); }
+      loadStats();  // refresh from the authoritative /api/stats
+      return;
     } else {
       const emailErrs = ["invalid_email","email_disposable","email_undeliverable"];
       pMsg.textContent = d["prereg."+(emailErrs.includes(data.error)?"err_email":data.error==="consent_required"?"err_consent":"err_generic")] || d["prereg.err_generic"];
