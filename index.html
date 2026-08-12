@@ -1012,8 +1012,8 @@ document.querySelectorAll("[data-soon]").forEach(b=>{
 
 /* ---------------- pre-registration ---------------- */
 // Set these two when the prereg-api service + Cloudflare Turnstile are deployed:
-const PREREG_API = "";              // e.g. "https://api.beyondgod.bubluestudio.com"
-const TURNSTILE_SITEKEY = "";       // Cloudflare Turnstile site key
+const PREREG_API = "https://api.beyondgod.bubluestudio.com";
+const TURNSTILE_SITEKEY = "0x4AAAAAAENn-VLbYPecp0YD";  // Cloudflare Turnstile site key
 
 const dictNow = () => I18N[document.documentElement.getAttribute("data-lang")] || I18N.en;
 const fmtN = (n) => { try { return Number(n).toLocaleString(document.documentElement.lang); } catch { return String(n); } };
