@@ -1054,11 +1054,22 @@ function renderTracker(){
       <span class="mat">${shortN(m.at)}</span></div>`;
   }).join("");
 
-  // progress bar: from the last reached floor to the next milestone
-  const nm = lastStats.nextMilestone;
-  const prev = lastStats.milestones.filter(m=>m.reached).map(m=>m.at).pop() || 0;
-  const pct = nm ? Math.max(4, Math.min(100, ((lastStats.total - prev) / (nm.at - prev)) * 100)) : 100;
-  document.getElementById("trackFill").style.width = pct + "%";
+  // progress bar: map the total onto the EVENLY-SPACED chip positions so the fill tip lines up with
+  // the chips (reaches each chip exactly when its milestone is hit). Chips sit at ((i+0.5)/n).
+  const ms = lastStats.milestones;
+  const n = ms.length;
+  const chipPos = (i)=> ((i + 0.5) / n) * 100;   // % center of chip i
+  const reachedCount = ms.filter(m=>m.reached).length;
+  let fillPct;
+  if(reachedCount >= n){ fillPct = 100; }
+  else {
+    const k = reachedCount;                       // index of next (first unreached) milestone
+    const prevAt = k > 0 ? ms[k-1].at : 0;
+    const startPct = k > 0 ? chipPos(k-1) : 0;
+    const seg = Math.max(0, Math.min(1, (lastStats.total - prevAt) / (ms[k].at - prevAt)));
+    fillPct = startPct + seg * (chipPos(k) - startPct);
+  }
+  document.getElementById("trackFill").style.width = fillPct.toFixed(2) + "%";
 
   trackerEl.classList.remove("hidden");
 }
