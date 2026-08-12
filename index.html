@@ -956,6 +956,9 @@ const I18N={
 
 /* ---------------- apply language ---------------- */
 function pickDefault(){
+  // ?lang= (from ad URLs) wins, so the landing language always matches the ad.
+  const urlLang=new URLSearchParams(location.search).get("lang");
+  if(urlLang&&I18N[urlLang])return urlLang;
   const saved=localStorage.getItem("bg_lang");
   if(saved&&I18N[saved])return saved;
   const n=(navigator.language||"en").toLowerCase();
