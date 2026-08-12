@@ -19,6 +19,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1842848640421657');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1842848640421657&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1189,6 +1205,8 @@ pForm.addEventListener("submit",async(e)=>{
     if(r.ok && data.registered){
       // Swap to the success view so there's no live form to accidentally re-submit.
       showSuccessView(data.alreadyRegistered ? d["prereg.already"] : d["prereg.success"]);
+      // Meta Pixel: count a conversion only for a genuinely NEW pre-registration.
+      if(!data.alreadyRegistered && window.fbq){ fbq("track","CompleteRegistration"); }
       if(typeof data.total==="number"){ lastStats=statsFromTotal(data.total); renderTracker(); }
       loadStats();  // refresh from the authoritative /api/stats
       return;
