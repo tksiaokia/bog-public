@@ -281,7 +281,7 @@ footer{background:#07060c;border-top:1px solid var(--line)}
   box-shadow:0 8px 26px rgba(199,154,75,.4);transition:transform .18s,filter .18s}
 .prereg-cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .prereg-cta svg{width:18px;height:18px;fill:#1a1408}
-.tracker{margin-top:22px;max-width:440px}
+.tracker{margin-top:22px;max-width:440px;display:none!important} /* milestone tracker hidden (soft launch) */
 .tracker.hidden{display:none}
 .tracker .tline{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
   font-size:13.5px;color:#d9d1e4;margin-bottom:8px}
@@ -432,23 +432,18 @@ footer{background:#07060c;border-top:1px solid var(--line)}
     <span class="hero-eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Collect · Battle · Ascend</span></span>
     <h1><span class="grad">Beyond God</span><br><span class="grad">Ascension</span></h1>
     <p class="tagline" data-i18n="hero.tagline">Summon the gods of four mythologies and rise from mortal to myth.</p>
-    <button class="prereg-cta" id="preregOpen" type="button">
-      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H21l-5.3 4 2 7L12 15.7 6.3 19.9l2-7L3 8.9h6.6z"/></svg>
-      <span data-i18n="prereg.cta">Pre-register</span>
-    </button>
     <div class="tracker hidden" id="tracker">
       <div class="tline"><span><b id="trackCount">0</b> <span data-i18n="prereg.count_suffix">summoners pre-registered</span></span></div>
       <div class="ladder" id="ladder"></div>
       <div class="tbar"><div class="tfill" id="trackFill"></div></div>
     </div>
     <div class="badges" style="margin-top:26px">
-      <div class="store-badge" data-soon>
+      <div class="store-badge js-ios-prereg" data-soon role="button" tabindex="0" style="cursor:pointer">
         <span class="soon" data-i18n="badge.soon">Coming Soon</span>
         <svg viewBox="0 0 24 24"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-.1.3-.6 1.5-.6 3.1 0 .8.2 1.7.4 2.6.5 1.4 1.7 3.4 2.9 3.3.6 0 1-.4 2-.4s1.3.4 2 .4c1.2 0 2.3-2 2.7-3.3-1.7-.7-1.9-2.7-1.9-2.8zM14.6 6.9c.6-.7 1-1.6.8-2.6-.8 0-1.8.6-2.4 1.2-.5.6-1 1.5-.8 2.5.9 0 1.8-.5 2.4-1.1z"/></svg>
         <span class="txt"><small data-i18n="badge.ios.top">Download on the</small><b data-i18n="badge.ios.name">App Store</b></span>
       </div>
       <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.bubluestudio.beyondgod" target="_blank" rel="noopener">
-        <span class="soon" data-i18n="prereg.cta">Pre-register</span>
         <svg viewBox="0 0 24 24"><path d="M4.3 3.3 13.5 12l-9.2 8.7c-.2-.2-.3-.5-.3-.9V4.2c0-.4.1-.7.3-.9zm10.5 9.6 2.4 2.3-9 5.1 6.6-7.4zm3.6-1.7c.5.3.8.7.8 1.2s-.3.9-.8 1.2l-2 1.1-2.6-2.3 2.6-2.3 2 1.1zM5.8 3l9 5.1-2.4 2.3L5.8 3z"/></svg>
         <span class="txt"><small data-i18n="badge.android.top">Get it on</small><b data-i18n="badge.android.name">Google Play</b></span>
       </a>
@@ -564,13 +559,12 @@ footer{background:#07060c;border-top:1px solid var(--line)}
     <h2 class="sec-title reveal" data-i18n="dl.title">Begin your ascension</h2>
     <p class="sec-lead reveal" data-i18n="dl.body">Join the war of the gods on iOS and Android. Free to download — summon your first legends today.</p>
     <div class="badges reveal" data-delay="1">
-      <div class="store-badge" data-soon>
+      <div class="store-badge js-ios-prereg" data-soon role="button" tabindex="0" style="cursor:pointer">
         <span class="soon" data-i18n="badge.soon">Coming Soon</span>
         <svg viewBox="0 0 24 24"><path d="M16.4 12.9c0-2 1.6-3 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-.1.3-.6 1.5-.6 3.1 0 .8.2 1.7.4 2.6.5 1.4 1.7 3.4 2.9 3.3.6 0 1-.4 2-.4s1.3.4 2 .4c1.2 0 2.3-2 2.7-3.3-1.7-.7-1.9-2.7-1.9-2.8zM14.6 6.9c.6-.7 1-1.6.8-2.6-.8 0-1.8.6-2.4 1.2-.5.6-1 1.5-.8 2.5.9 0 1.8-.5 2.4-1.1z"/></svg>
         <span class="txt"><small data-i18n="badge.ios.top">Download on the</small><b data-i18n="badge.ios.name">App Store</b></span>
       </div>
       <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.bubluestudio.beyondgod" target="_blank" rel="noopener">
-        <span class="soon" data-i18n="prereg.cta">Pre-register</span>
         <svg viewBox="0 0 24 24"><path d="M4.3 3.3 13.5 12l-9.2 8.7c-.2-.2-.3-.5-.3-.9V4.2c0-.4.1-.7.3-.9zm10.5 9.6 2.4 2.3-9 5.1 6.6-7.4zm3.6-1.7c.5.3.8.7.8 1.2s-.3.9-.8 1.2l-2 1.1-2.6-2.3 2.6-2.3 2 1.1zM5.8 3l9 5.1-2.4 2.3L5.8 3z"/></svg>
         <span class="txt"><small data-i18n="badge.android.top">Get it on</small><b data-i18n="badge.android.name">Google Play</b></span>
       </a>
@@ -671,7 +665,7 @@ const I18N={
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension and all related marks are trademarks of Bublue Studio.",
  "toast.soon":"Coming soon — stay tuned!",
  "prereg.cta":"Pre-register","prereg.count_suffix":"summoners pre-registered","prereg.next_prefix":"Next reward at",
- "prereg.title":"Pre-register now","prereg.sub":"Join the summoning and unlock launch rewards for everyone.",
+ "prereg.title":"Pre-register for iOS","prereg.sub":"iOS is coming soon — pre-register to get your launch rewards, and we'll email you the moment it's live.",
  "prereg.email_ph":"Your email address","prereg.consent":"I agree to receive a launch notification, per the Privacy Policy.",
  "prereg.submit":"Count me in","prereg.success":"At launch, bind your account in-game to claim your rewards. See you there!",
  "prereg.already":"You're already registered — see you at launch!","prereg.err_email":"Please enter a valid email address.",
@@ -709,7 +703,7 @@ const I18N={
  "foot.pub":"由 Bublue Studio 发行","foot.support":"支持","foot.privacy":"隐私政策",
  "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相关标志均为 Bublue Studio 的商标。",
  "prereg.cta":"预约","prereg.count_suffix":"位召唤师已预约","prereg.next_prefix":"下个奖励解锁于",
- "prereg.title":"立即预约","prereg.sub":"加入召唤，为所有玩家解锁开服奖励。",
+ "prereg.title":"预约 iOS 版本","prereg.sub":"iOS 版本即将推出——预约即可获得开服奖励，上线第一时间邮件通知你。",
  "prereg.email_ph":"你的电子邮箱","prereg.consent":"我同意接收开服通知，并已阅读隐私政策。",
  "prereg.submit":"算我一个","prereg.success":"开服后在游戏内绑定账号即可领取奖励，开服见！",
  "prereg.already":"你已预约——开服见！","prereg.err_email":"请输入有效的电子邮箱。",
@@ -748,7 +742,7 @@ const I18N={
  "foot.pub":"由 Bublue Studio 發行","foot.support":"支援","foot.privacy":"隱私政策",
  "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相關標誌均為 Bublue Studio 的商標。",
  "prereg.cta":"預約","prereg.count_suffix":"位召喚師已預約","prereg.next_prefix":"下個獎勵解鎖於",
- "prereg.title":"立即預約","prereg.sub":"加入召喚，為所有玩家解鎖開服獎勵。",
+ "prereg.title":"預約 iOS 版本","prereg.sub":"iOS 版本即將推出——預約即可獲得開服獎勵，上線第一時間以電子郵件通知你。",
  "prereg.email_ph":"你的電子郵箱","prereg.consent":"我同意接收開服通知，並已閱讀隱私政策。",
  "prereg.submit":"算我一個","prereg.success":"開服後在遊戲內綁定帳號即可領取獎勵，開服見！",
  "prereg.already":"你已預約——開服見！","prereg.err_email":"請輸入有效的電子郵箱。",
@@ -787,7 +781,7 @@ const I18N={
  "foot.pub":"Bublue Studio 배급","foot.support":"고객지원","foot.privacy":"개인정보 처리방침",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension 및 관련 상표는 Bublue Studio의 상표입니다.",
  "prereg.cta":"사전예약","prereg.count_suffix":"명의 소환사가 사전예약했어요","prereg.next_prefix":"다음 보상 해금까지",
- "prereg.title":"지금 사전예약","prereg.sub":"소환에 동참하고 모두를 위한 출시 보상을 해금하세요.",
+ "prereg.title":"iOS 사전예약","prereg.sub":"iOS 버전이 곧 출시됩니다 — 사전예약하면 출시 보상을 받고, 출시되는 즉시 이메일로 알려드립니다.",
  "prereg.email_ph":"이메일 주소","prereg.consent":"출시 알림 수신에 동의하며 개인정보 처리방침을 확인했습니다.",
  "prereg.submit":"참여하기","prereg.success":"출시 후 게임에서 계정을 연동하면 보상을 받을 수 있어요. 출시 때 만나요!",
  "prereg.already":"이미 사전예약하셨어요 — 출시 때 만나요!","prereg.err_email":"올바른 이메일 주소를 입력해 주세요.",
@@ -826,7 +820,7 @@ const I18N={
  "foot.pub":"発行：Bublue Studio","foot.support":"サポート","foot.privacy":"プライバシーポリシー",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension および関連するマークは Bublue Studio の商標です。",
  "prereg.cta":"事前登録","prereg.count_suffix":"人の召喚士が事前登録","prereg.next_prefix":"次の報酬解放まで",
- "prereg.title":"今すぐ事前登録","prereg.sub":"召喚に加わり、全員のためのリリース報酬を解放しよう。",
+ "prereg.title":"iOS版を事前登録","prereg.sub":"iOS版は近日配信予定——事前登録でリリース報酬を受け取れます。配信開始と同時にメールでお知らせします。",
  "prereg.email_ph":"メールアドレス","prereg.consent":"リリース通知の受信に同意し、プライバシーポリシーを確認しました。",
  "prereg.submit":"参加する","prereg.success":"リリース後、ゲーム内でアカウントを連携すると報酬を受け取れます。お楽しみに！",
  "prereg.already":"すでに事前登録済みです — リリースでお会いしましょう！","prereg.err_email":"有効なメールアドレスを入力してください。",
@@ -865,7 +859,7 @@ const I18N={
  "foot.pub":"เผยแพร่โดย Bublue Studio","foot.support":"ฝ่ายสนับสนุน","foot.privacy":"นโยบายความเป็นส่วนตัว",
  "foot.copy":"© 2026 Bublue Studio สงวนลิขสิทธิ์ Beyond God: Ascension และเครื่องหมายที่เกี่ยวข้องเป็นเครื่องหมายการค้าของ Bublue Studio",
  "prereg.cta":"ลงทะเบียนล่วงหน้า","prereg.count_suffix":"ผู้อัญเชิญลงทะเบียนแล้ว","prereg.next_prefix":"รางวัลถัดไปปลดล็อกที่",
- "prereg.title":"ลงทะเบียนล่วงหน้าเลย","prereg.sub":"ร่วมการอัญเชิญ และปลดล็อกรางวัลเปิดตัวให้ทุกคน",
+ "prereg.title":"ลงทะเบียนล่วงหน้าสำหรับ iOS","prereg.sub":"เวอร์ชัน iOS กำลังจะมาเร็ว ๆ นี้ — ลงทะเบียนล่วงหน้าเพื่อรับรางวัลเปิดตัว และเราจะแจ้งทางอีเมลทันทีที่เปิดตัว",
  "prereg.email_ph":"อีเมลของคุณ","prereg.consent":"ฉันยินยอมรับการแจ้งเตือนวันเปิดตัว ตามนโยบายความเป็นส่วนตัว",
  "prereg.submit":"ฉันเอาด้วย","prereg.success":"เมื่อเปิดตัว ผูกบัญชีในเกมเพื่อรับรางวัลได้เลย แล้วพบกัน!",
  "prereg.already":"คุณลงทะเบียนไว้แล้ว — พบกันวันเปิดตัว!","prereg.err_email":"กรุณากรอกอีเมลที่ถูกต้อง",
@@ -904,7 +898,7 @@ const I18N={
  "foot.pub":"Diterbitkan oleh Bublue Studio","foot.support":"Dukungan","foot.privacy":"Kebijakan Privasi",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension dan semua merek terkait adalah merek dagang Bublue Studio.",
  "prereg.cta":"Pra-registrasi","prereg.count_suffix":"summoner telah mendaftar","prereg.next_prefix":"Hadiah berikutnya di",
- "prereg.title":"Pra-registrasi sekarang","prereg.sub":"Ikut memanggil dan buka hadiah peluncuran untuk semua.",
+ "prereg.title":"Pra-registrasi untuk iOS","prereg.sub":"Versi iOS segera hadir — pra-registrasi untuk mendapatkan hadiah peluncuran, dan kami akan mengirim email begitu rilis.",
  "prereg.email_ph":"Alamat email kamu","prereg.consent":"Saya setuju menerima notifikasi peluncuran, sesuai Kebijakan Privasi.",
  "prereg.submit":"Ikut daftar","prereg.success":"Saat rilis, tautkan akunmu di dalam game untuk klaim hadiah. Sampai jumpa!",
  "prereg.already":"Kamu sudah terdaftar — sampai jumpa saat rilis!","prereg.err_email":"Masukkan alamat email yang valid.",
@@ -943,7 +937,7 @@ const I18N={
  "foot.pub":"Phát hành bởi Bublue Studio","foot.support":"Hỗ Trợ","foot.privacy":"Chính Sách Bảo Mật",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension và mọi nhãn hiệu liên quan là thương hiệu của Bublue Studio.",
  "prereg.cta":"Đăng ký trước","prereg.count_suffix":"summoner đã đăng ký","prereg.next_prefix":"Phần thưởng tiếp theo mở tại",
- "prereg.title":"Đăng ký trước ngay","prereg.sub":"Tham gia triệu hồi và mở khóa phần thưởng ra mắt cho tất cả.",
+ "prereg.title":"Đăng ký trước cho iOS","prereg.sub":"Phiên bản iOS sắp ra mắt — đăng ký trước để nhận phần thưởng ra mắt, và chúng tôi sẽ gửi email ngay khi phát hành.",
  "prereg.email_ph":"Địa chỉ email của bạn","prereg.consent":"Tôi đồng ý nhận thông báo ra mắt, theo Chính Sách Bảo Mật.",
  "prereg.submit":"Tham gia ngay","prereg.success":"Khi ra mắt, hãy liên kết tài khoản trong game để nhận thưởng. Hẹn gặp lại!",
  "prereg.already":"Bạn đã đăng ký rồi — hẹn gặp khi ra mắt!","prereg.err_email":"Vui lòng nhập email hợp lệ.",
@@ -1185,7 +1179,12 @@ function openModal(){
   pModal.classList.add("open"); setTimeout(()=>pEmail.focus(),50);
 }
 function closeModal(){ pModal.classList.remove("open"); }
-document.getElementById("preregOpen").addEventListener("click",openModal);
+var _preregOpen=document.getElementById("preregOpen"); if(_preregOpen) _preregOpen.addEventListener("click",openModal);
+// App Store badge → open the pre-register modal (iOS still in review; collect iOS launch emails).
+document.querySelectorAll(".js-ios-prereg").forEach(function(el){
+  el.addEventListener("click", openModal);
+  el.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openModal(); } });
+});
 document.getElementById("preregClose").addEventListener("click",closeModal);
 document.getElementById("preregDone").addEventListener("click",closeModal);
 pModal.addEventListener("click",e=>{ if(e.target===pModal) closeModal(); });
