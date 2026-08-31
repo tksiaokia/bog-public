@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!--
+  Facebook ad creative — SOFT LAUNCH (Android / Google Play only). 1080x1080 feed square.
+  Replaces the pre-register creative (_ad_creative.html), which is kept for reference.
+  Render:  bash render_ads.sh      (headless Chrome, 2x -> marketing/bog_launch_square_en.png)
+-->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#e8c37a;--gold-deep:#c79a4b;--gold-soft:#f6e2b0;--ink:#f3ecde;
+  --live:#6ee7a0;
+  --sans:-apple-system,"PingFang SC","Hiragino Sans",Segoe UI,Roboto,sans-serif;
+  --disp:"Cinzel",serif}
+html,body{background:#000}
+.creative{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:var(--disp);color:var(--ink)}
+.bg{position:absolute;inset:0;background:url('./assets/bg/battle_zues.jpg') center 20%/cover no-repeat}
+.bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 80% at 62% 22%, transparent 0%, rgba(10,9,16,.35) 46%, rgba(10,9,16,.92) 90%),
+    linear-gradient(180deg, rgba(10,9,16,.72) 0%, rgba(10,9,16,.12) 24%, rgba(10,9,16,.42) 52%, rgba(8,7,12,.985) 100%)}
+.wrap{position:absolute;inset:0;padding:66px 72px 60px;display:flex;flex-direction:column}
+
+.brand{display:flex;align-items:center;gap:18px}
+.brand img{width:74px;height:74px;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+.brand .bt{font-weight:800;font-size:30px;letter-spacing:.06em}.brand .bt b{color:var(--gold)}
+
+/* "Now live" eyebrow — green dot reads as a status light, not decoration. */
+.eyebrow{margin-top:auto;display:inline-flex;align-self:flex-start;align-items:center;gap:14px;
+  font-family:var(--sans);font-weight:700;font-size:19px;letter-spacing:.24em;color:var(--gold);
+  border-radius:999px;padding:11px 24px;
+  background:rgba(12,10,20,.72);backdrop-filter:blur(2px);text-transform:uppercase}
+.eyebrow i{width:11px;height:11px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 12px rgba(110,231,160,.9);flex:none}
+
+h1{font-weight:900;font-size:96px;line-height:.98;margin:22px 0 0;text-shadow:0 6px 40px rgba(0,0,0,.7)}
+h1 .g{background:linear-gradient(180deg,#fff 6%,var(--gold-soft) 52%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tag{font-family:var(--sans);font-weight:500;font-size:26px;color:#e6dff0;margin-top:18px;max-width:24ch;
+  line-height:1.38;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+
+/* Gift codes — the actual offer, so it gets the strongest block on the card. */
+.codes{margin-top:26px}
+.codes .hd{font-family:var(--sans);font-weight:800;font-size:23px;color:var(--gold-soft);letter-spacing:.02em}
+.codes .hd span{font-weight:500;font-size:19px;color:#c9c2d6;letter-spacing:0}
+.codes .row{margin-top:13px;display:flex;gap:13px}
+.codes .code{font-family:var(--sans);font-weight:800;font-size:25px;letter-spacing:.10em;color:#fff5dd;
+  padding:15px 22px;border-radius:13px;border:1.5px solid rgba(232,195,122,.62);
+  background:linear-gradient(180deg,rgba(232,195,122,.20),rgba(232,195,122,.05));
+  box-shadow:0 6px 18px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14);white-space:nowrap}
+
+.cta{margin-top:30px;display:flex;align-items:center;gap:26px}
+.cta .btn{font-family:var(--sans);font-weight:800;font-size:33px;letter-spacing:.03em;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));padding:23px 48px;border-radius:16px;
+  box-shadow:0 10px 30px rgba(199,154,75,.5);text-transform:uppercase;white-space:nowrap}
+.cta img{height:76px;width:auto;display:block}
+
+.foot{margin-top:26px;display:flex;align-items:baseline;gap:16px}
+.foot .url{font-family:var(--sans);font-size:21px;color:#b9b1c8;letter-spacing:.02em}
+.foot .plat{font-family:var(--sans);font-size:19px;color:#8f88a2;letter-spacing:.06em;text-transform:uppercase}
+</style></head>
+<body>
+<div class="creative">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="brand"><img src="./icon.png" alt=""><div class="bt">BEYOND<b>GOD</b></div></div>
+
+    <span class="eyebrow"><i></i>Soft Launch · Now Live</span>
+    <h1><span class="g">BEYOND GOD</span><br><span class="g">ASCENSION</span></h1>
+    <p class="tag">Summon the gods of four mythologies and rise from mortal to myth.</p>
+
+    <div class="codes">
+      <div class="hd">3 Gift Codes <span>— redeem in-game for free rewards</span></div>
+      <div class="row">
+        <div class="code">LAUNCH2026</div>
+        <div class="code">GIFT2026</div>
+        <div class="code">WELCOME</div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="btn">Play Free</div>
+      <img src="./badge-googleplay.png" alt="Get it on Google Play">
+    </div>
+
+    <div class="foot">
+      <div class="url">beyondgod.bubluestudio.com</div>
+      <div class="plat">Android · Free to Play</div>
+    </div>
+  </div>
+</div>
+</body></html>

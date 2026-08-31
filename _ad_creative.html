@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#e8c37a;--gold-deep:#c79a4b;--gold-soft:#f6e2b0;--ink:#f3ecde;
+  --sans:-apple-system,"PingFang SC","Hiragino Sans","Apple SD Gothic Neo",Segoe UI,Roboto,sans-serif;
+  --disp:"Cinzel","Songti SC","Hiragino Mincho ProN","Apple SD Gothic Neo",serif}
+html,body{background:#000}
+.creative{position:relative;width:1080px;height:1080px;overflow:hidden;font-family:var(--disp);color:var(--ink)}
+.bg{position:absolute;inset:0;background:url('./assets/bg/battle_zues.jpg') center 20%/cover no-repeat}
+.bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 80% at 62% 22%, transparent 0%, rgba(10,9,16,.35) 46%, rgba(10,9,16,.92) 90%),
+    linear-gradient(180deg, rgba(10,9,16,.72) 0%, rgba(10,9,16,.12) 26%, rgba(10,9,16,.35) 55%, rgba(8,7,12,.98) 100%)}
+.frame{position:absolute;inset:26px;border:2px solid rgba(232,195,122,.45);border-radius:26px;pointer-events:none}
+.wrap{position:absolute;inset:0;padding:70px 72px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:18px}
+.brand img{width:74px;height:74px;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+.brand .bt{font-weight:800;font-size:30px;letter-spacing:.06em}.brand .bt b{color:var(--gold)}
+.eyebrow{margin-top:auto;display:inline-flex;align-self:flex-start;align-items:center;font-family:var(--sans);
+  font-weight:700;font-size:20px;letter-spacing:.26em;color:var(--gold);border:1px solid rgba(232,195,122,.5);
+  border-radius:999px;padding:12px 26px;background:rgba(232,195,122,.08);text-transform:uppercase}
+h1{font-weight:900;font-size:104px;line-height:.98;margin:24px 0 0;text-shadow:0 6px 40px rgba(0,0,0,.7)}
+h1 .g{background:linear-gradient(180deg,#fff 6%,var(--gold-soft) 52%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tag{font-family:var(--sans);font-weight:500;font-size:27px;color:#e6dff0;margin-top:22px;max-width:22ch;line-height:1.4;
+  text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.rewards{margin-top:30px;display:flex;align-items:center;gap:16px}
+.rewards .chip{width:82px;height:82px;border-radius:18px;display:grid;place-items:center;
+  background:radial-gradient(circle at 38% 26%,rgba(232,195,122,.22),rgba(255,255,255,.04));
+  border:1px solid rgba(232,195,122,.5);box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.rewards .chip img{width:56px;height:56px;object-fit:contain}
+.rewards .txt{margin-left:6px;font-family:var(--sans)}
+.rewards .txt b{display:block;font-weight:800;font-size:26px;color:var(--gold-soft)}
+.rewards .txt span{font-size:19px;color:#c9c2d6}
+.cta{margin-top:34px;display:flex;align-items:center;gap:26px}
+.cta .btn{font-family:var(--sans);font-weight:800;font-size:34px;letter-spacing:.03em;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));padding:24px 52px;border-radius:16px;
+  box-shadow:0 10px 30px rgba(199,154,75,.5);text-transform:uppercase;white-space:nowrap}
+.cta .count{font-family:var(--sans);font-size:21px;color:#d9d1e4;line-height:1.35}
+.cta .count b{color:var(--gold-soft);font-size:26px}
+.foot{margin-top:36px}
+.foot .url{font-family:var(--sans);font-size:22px;color:#b9b1c8;letter-spacing:.02em}
+</style></head>
+<body>
+<div class="creative">
+  <div class="bg"></div><div class="frame"></div>
+  <div class="wrap">
+    <div class="brand"><img src="./icon.png" alt=""><div class="bt">BEYOND<b>GOD</b></div></div>
+    <span class="eyebrow" id="eyebrow"></span>
+    <h1><span class="g">BEYOND GOD</span><br><span class="g">ASCENSION</span></h1>
+    <p class="tag" id="tag"></p>
+    <div class="rewards">
+      <div class="chip"><img src="./assets/items/gems.png"></div>
+      <div class="chip"><img src="./assets/items/divine.png"></div>
+      <div class="chip"><img src="./assets/items/sigil.png"></div>
+      <div class="chip"><img src="./assets/items/realm.png"></div>
+      <div class="txt"><b id="rw1"></b><span id="rw2"></span></div>
+    </div>
+    <div class="cta">
+      <div class="btn" id="cta"></div>
+      <div class="count"><b id="cnt"></b><br><span id="cntsuf"></span></div>
+    </div>
+    <div class="foot"><div class="url" id="url"></div></div>
+  </div>
+</div>
+<script>
+const L={
+ "en":{eyebrow:"Collect · Battle · Ascend",tag:"Summon the gods of four mythologies and rise from mortal to myth.",cta:"Pre-register",rw1:"Free launch rewards",rw2:"unlocked for everyone",cnt:"43,000+",cntsuf:"summoners already in",url:"beyondgod.bubluestudio.com"},
+ "zh-TW":{eyebrow:"收集 · 戰鬥 · 飛昇",tag:"召喚四大神話的諸神，從凡人蛻變為傳說。",cta:"立即預約",rw1:"免費開服獎勵",rw2:"所有玩家共享",cnt:"43,000+",cntsuf:"位召喚師已預約",url:"beyondgod.bubluestudio.com"},
+ "ja":{eyebrow:"集める · 戦う · 昇華",tag:"四大神話の神々を召喚し、人の身から神話へと昇りつめよ。",cta:"事前登録受付中",rw1:"無料リリース報酬",rw2:"全員に解放",cnt:"43,000+",cntsuf:"人が事前登録",url:"beyondgod.bubluestudio.com"},
+ "ko":{eyebrow:"수집 · 전투 · 승천",tag:"네 신화의 신들을 소환하고, 필멸자에서 신화로 거듭나세요.",cta:"사전예약",rw1:"무료 출시 보상",rw2:"모두에게 해금",cnt:"43,000+",cntsuf:"명 사전예약 완료",url:"beyondgod.bubluestudio.com"}
+};
+const lang=new URLSearchParams(location.search).get("lang")||"en";
+document.documentElement.lang=lang;const d=L[lang]||L.en;
+for(const k in d){const e=document.getElementById(k);if(e)e.textContent=d[k];}
+</script>
+</body></html>

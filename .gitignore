@@ -23,3 +23,9 @@ node_modules/
 dist/
 .cache/
 *.log
+
+# --- Rendered ad creatives (84MB+) ---
+# Regenerate with `bash render_ads.sh`; the _ad_*.html sources ARE tracked.
+# Kept out of git because this is a public Pages site: marketing/ has no leading
+# underscore, so Jekyll WOULD serve every render at the live domain.
+marketing/

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!--
+  Facebook landscape ad creative — SOFT LAUNCH (Android only). 1200x628.
+  Replaces _ad_creative_landscape.html (pre-register), kept for reference.
+  Only 628px tall, so the codes sit inline with their label rather than in their own block.
+  Render:  bash render_ads.sh
+-->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#e8c37a;--gold-deep:#c79a4b;--gold-soft:#f6e2b0;--ink:#f3ecde;--live:#6ee7a0;
+  --sans:-apple-system,"PingFang SC","Hiragino Sans",Segoe UI,Roboto,sans-serif;
+  --disp:"Cinzel",serif}
+html,body{background:#000}
+.creative{position:relative;width:1200px;height:628px;overflow:hidden;font-family:var(--disp);color:var(--ink)}
+.bg{position:absolute;inset:0;background:url('./assets/bg/battle_zues.jpg') center 18%/cover no-repeat}
+.bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(95deg, rgba(8,7,12,.97) 30%, rgba(10,9,16,.62) 58%, rgba(10,9,16,.30) 100%),
+    linear-gradient(180deg, rgba(10,9,16,.55) 0%, transparent 30%, rgba(8,7,12,.80) 100%)}
+.wrap{position:absolute;inset:0;padding:40px 52px;display:flex;flex-direction:column;width:70%}
+
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:56px;height:56px;border-radius:13px;box-shadow:0 4px 12px rgba(0,0,0,.6)}
+.brand .bt{font-weight:800;font-size:25px;letter-spacing:.05em}.brand .bt b{color:var(--gold)}
+
+.eyebrow{margin-top:14px;align-self:flex-start;display:inline-flex;align-items:center;gap:11px;
+  font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.2em;color:var(--gold);
+  border-radius:999px;padding:8px 18px;
+  background:rgba(12,10,20,.72);backdrop-filter:blur(2px);text-transform:uppercase}
+.eyebrow i{width:9px;height:9px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 10px rgba(110,231,160,.9);flex:none}
+
+h1{margin-top:12px;font-weight:900;font-size:62px;line-height:.96;text-shadow:0 5px 30px rgba(0,0,0,.7)}
+h1 .g{background:linear-gradient(180deg,#fff 6%,var(--gold-soft) 52%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.codes{margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+.codes .hd{font-family:var(--sans);font-weight:800;font-size:17px;color:var(--gold-soft);
+  line-height:1.25;max-width:9ch;flex:none}
+.codes .code{font-family:var(--sans);font-weight:800;font-size:19px;letter-spacing:.07em;color:#fff5dd;
+  padding:11px 15px;border-radius:11px;border:1.5px solid rgba(232,195,122,.62);
+  background:linear-gradient(180deg,rgba(232,195,122,.20),rgba(232,195,122,.05));
+  box-shadow:0 5px 14px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14);white-space:nowrap}
+
+.cta{margin-top:auto;display:flex;align-items:center;gap:20px}
+.cta .btn{font-family:var(--sans);font-weight:800;font-size:25px;letter-spacing:.03em;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));padding:16px 34px;border-radius:13px;
+  box-shadow:0 8px 24px rgba(199,154,75,.5);text-transform:uppercase;white-space:nowrap}
+.cta img{height:58px;width:auto;display:block}
+.cta .meta{font-family:var(--sans);font-size:15px;color:#a79fbb;line-height:1.5;letter-spacing:.02em}
+.cta .meta b{display:block;font-weight:500;color:#8f88a2;letter-spacing:.06em;text-transform:uppercase}
+</style></head>
+<body>
+<div class="creative">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="brand"><img src="./icon.png" alt=""><div class="bt">BEYOND<b>GOD</b></div></div>
+    <span class="eyebrow"><i></i>Soft Launch · Now Live</span>
+    <h1><span class="g">BEYOND GOD</span><br><span class="g">ASCENSION</span></h1>
+
+    <div class="codes">
+      <div class="hd">3 Gift Codes</div>
+      <div class="code">LAUNCH2026</div>
+      <div class="code">GIFT2026</div>
+      <div class="code">WELCOME</div>
+    </div>
+
+    <div class="cta">
+      <div class="btn">Play Free</div>
+      <img src="./badge-googleplay.png" alt="Get it on Google Play">
+      <div class="meta">beyondgod.bubluestudio.com<b>Android · Free to Play</b></div>
+    </div>
+  </div>
+</div>
+</body></html>

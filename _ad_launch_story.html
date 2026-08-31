@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!--
+  Facebook / Instagram story-reels ad creative — SOFT LAUNCH (Android only). 1080x1920.
+  Replaces _ad_creative_story.html (pre-register), kept for reference.
+  Render:  bash render_ads.sh
+-->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#e8c37a;--gold-deep:#c79a4b;--gold-soft:#f6e2b0;--ink:#f3ecde;--live:#6ee7a0;
+  --sans:-apple-system,"PingFang SC","Hiragino Sans",Segoe UI,Roboto,sans-serif;
+  --disp:"Cinzel",serif}
+html,body{background:#000}
+.creative{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:var(--disp);color:var(--ink)}
+.bg{position:absolute;inset:0;background:url('./assets/bg/battle_zues.jpg') center 22%/cover no-repeat}
+.bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(110% 60% at 56% 24%, transparent 0%, rgba(10,9,16,.30) 44%, rgba(10,9,16,.90) 88%),
+    linear-gradient(180deg, rgba(10,9,16,.74) 0%, rgba(10,9,16,.10) 22%, rgba(10,9,16,.48) 50%, rgba(8,7,12,.99) 82%)}
+
+.brand{position:absolute;top:82px;left:84px;display:flex;align-items:center;gap:20px}
+.brand img{width:88px;height:88px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.6)}
+.brand .bt{font-weight:800;font-size:38px;letter-spacing:.05em}.brand .bt b{color:var(--gold)}
+
+.body{position:absolute;left:0;right:0;bottom:96px;padding:0 58px;display:flex;flex-direction:column;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-family:var(--sans);font-weight:700;font-size:23px;
+  letter-spacing:.26em;color:var(--gold);border-radius:999px;
+  padding:14px 30px;background:rgba(12,10,20,.72);backdrop-filter:blur(2px);text-transform:uppercase}
+.eyebrow i{width:13px;height:13px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 14px rgba(110,231,160,.9);flex:none}
+
+h1{margin-top:30px;font-weight:900;font-size:102px;line-height:.96;text-align:center;
+  text-shadow:0 6px 44px rgba(0,0,0,.75)}
+h1 .g{background:linear-gradient(180deg,#fff 6%,var(--gold-soft) 52%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tag{font-family:var(--sans);font-weight:500;font-size:35px;color:#e6dff0;margin-top:28px;line-height:1.4;
+  text-align:center;max-width:20ch;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+
+.codes{margin-top:44px;width:100%;text-align:center}
+.codes .hd{font-family:var(--sans);font-weight:800;font-size:32px;color:var(--gold-soft)}
+.codes .hd span{display:block;margin-top:8px;font-weight:500;font-size:26px;color:#c9c2d6}
+.codes .row{margin-top:22px;display:flex;justify-content:center;gap:16px}
+.codes .code{font-family:var(--sans);font-weight:800;font-size:32px;letter-spacing:.09em;color:#fff5dd;
+  padding:19px 24px;border-radius:16px;border:2px solid rgba(232,195,122,.62);
+  background:linear-gradient(180deg,rgba(232,195,122,.20),rgba(232,195,122,.05));
+  box-shadow:0 8px 22px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.14);white-space:nowrap}
+
+.btn{margin-top:54px;font-family:var(--sans);font-weight:800;font-size:50px;letter-spacing:.03em;color:#1a1408;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold-deep));padding:30px 96px;border-radius:22px;
+  box-shadow:0 12px 38px rgba(199,154,75,.55);text-transform:uppercase}
+.badge{margin-top:34px}.badge img{height:96px;width:auto;display:block}
+.url{margin-top:30px;font-family:var(--sans);font-size:27px;color:#b9b1c8;letter-spacing:.03em;text-align:center}
+.url b{display:block;margin-top:8px;font-weight:500;font-size:23px;color:#8f88a2;letter-spacing:.08em;
+  text-transform:uppercase}
+</style></head>
+<body>
+<div class="creative">
+  <div class="bg"></div>
+  <div class="brand"><img src="./icon.png" alt=""><div class="bt">BEYOND<b>GOD</b></div></div>
+  <div class="body">
+    <span class="eyebrow"><i></i>Soft Launch · Now Live</span>
+    <h1><span class="g">BEYOND GOD</span><br><span class="g">ASCENSION</span></h1>
+    <p class="tag">Summon the gods of four mythologies and rise from mortal to myth.</p>
+
+    <div class="codes">
+      <div class="hd">3 Gift Codes<span>Redeem in-game for free rewards</span></div>
+      <div class="row">
+        <div class="code">LAUNCH2026</div>
+        <div class="code">GIFT2026</div>
+        <div class="code">WELCOME</div>
+      </div>
+    </div>
+
+    <div class="btn">Play Free</div>
+    <div class="badge"><img src="./badge-googleplay.png" alt="Get it on Google Play"></div>
+    <div class="url">beyondgod.bubluestudio.com<b>Android · Free to Play</b></div>
+  </div>
+</div>
+</body></html>
