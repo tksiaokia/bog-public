@@ -5,34 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Beyond God: Ascension</title>
 <style>
-  :root { color-scheme: light dark; }
-  body { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; font: 16px/1.6 -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-  h1 { font-size: 28px; margin-bottom: 4px; }
-  h2 { font-size: 20px; margin-top: 34px; }
-  .muted { color: #888; font-size: 14px; }
-  code { background: rgba(128,128,128,.15); padding: 1px 5px; border-radius: 4px; }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-  th, td { border: 1px solid rgba(128,128,128,.35); padding: 8px 10px; text-align: left; vertical-align: top; font-size: 15px; }
-  a { color: #2a7ae2; }
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1e26;
+    --muted: #6b7280;
+    --accent: #6d5cff;
+    --accent-soft: rgba(109, 92, 255, .10);
+    --border: rgba(120, 120, 140, .28);
+    --row-alt: rgba(120, 120, 140, .06);
+    --card: rgba(120, 120, 140, .04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1117;
+      --fg: #e7e9f0;
+      --muted: #9aa0b0;
+      --accent: #9d8bff;
+      --accent-soft: rgba(157, 139, 255, .14);
+      --border: rgba(150, 150, 175, .24);
+      --row-alt: rgba(150, 150, 175, .06);
+      --card: rgba(150, 150, 175, .05);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 20px 96px;
+    color: var(--fg);
+    background: var(--bg);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 0 18px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  header.top .mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 17px;
+  }
+  header.top .game { font-weight: 650; font-size: 15px; letter-spacing: .2px; }
+  header.top a.home { margin-left: auto; font-size: 14px; color: var(--accent); text-decoration: none; }
+  header.top a.home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 30px 0 4px; letter-spacing: -.3px; }
+  h2 {
+    font-size: 20px;
+    margin-top: 40px;
+    padding-top: 6px;
+    scroll-margin-top: 20px;
+  }
+  h2 .n { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); font-size: 14px; }
+  .lead {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 20px 0 8px;
+  }
+  code {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: .92em;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14px 0;
+    font-size: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  thead th {
+    background: var(--accent-soft);
+    color: var(--fg);
+    font-weight: 650;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--row-alt); }
+  a { color: var(--accent); }
   ul { padding-left: 22px; }
+  li { margin: 3px 0; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  .footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 </style>
 </head>
 <body>
 
+<header class="top">
+  <span class="mark">B</span>
+  <span class="game">Beyond God: Ascension</span>
+  <a class="home" href="./index.html">← Home</a>
+</header>
+
 <h1>Privacy Policy</h1>
-<p class="muted">Beyond God: Ascension &middot; Last updated: 12 August 2026</p>
+<p class="muted">Beyond God: Ascension &middot; Last updated: 10 September 2026</p>
 
-<p>This Privacy Policy explains how <strong>Bublue Studio</strong> ("we", "us", "our"), a game studio
-based in Malaysia, collects, uses,
-and shares information when you play <strong>Beyond God: Ascension</strong> (the "Game",
-package <code>com.bubluestudio.beyondgod</code>). By downloading or playing the Game, you agree to the
-practices described here.</p>
+<p class="lead">This Privacy Policy explains how <strong>Bublue Studio</strong> ("we", "us", "our"), a game studio
+based in Malaysia, collects, uses, and shares information when you play <strong>Beyond God: Ascension</strong>
+(the "Game", package <code>com.bubluestudio.beyondgod</code>). By downloading or playing the Game, you agree
+to the practices described here.</p>
 
-<h2>1. Information We Collect</h2>
+<h2><span class="n">1.</span> Information We Collect</h2>
 <p>We collect only the data needed to run the Game, save your progress, process purchases, and show
 rewarded ads. We do <strong>not</strong> ask for your real name, phone number, or physical address.</p>
 <table>
-  <tr><th>Category</th><th>Examples</th><th>Why</th></tr>
+  <thead><tr><th>Category</th><th>Examples</th><th>Why</th></tr></thead>
+  <tbody>
   <tr><td>Account &amp; identifiers</td><td>A device-generated account ID; if you use social sign-in,
     the account identifier and email returned by that provider (e.g. Google)</td><td>Create and restore your account, sync progress across devices</td></tr>
   <tr><td>In-game profile</td><td>Display name you choose, level, heroes, currencies, battle and event progress</td><td>Provide gameplay, leaderboards, and events</td></tr>
@@ -40,9 +139,10 @@ rewarded ads. We do <strong>not</strong> ask for your real name, phone number, o
   <tr><td>Advertising identifier</td><td>Your device's advertising identifier (Google Advertising ID on Android, or Apple's Identifier for Advertisers "IDFA" on iOS) and related ad-interaction data</td><td>Show and verify rewarded ads via our ad partner</td></tr>
   <tr><td>Device &amp; technical data</td><td>Device model, operating-system version, language/region, IP address, crash and performance logs</td><td>Compatibility, security, fraud prevention, and troubleshooting</td></tr>
   <tr><td>Pre-registration (website)</td><td>If you pre-register on our website, the email address you submit and your language preference</td><td>Notify you when the Game launches and deliver pre-registration rewards to your game account. Provided only with your consent; you can withdraw it at any time (see Sections&nbsp;7 and&nbsp;10)</td></tr>
+  </tbody>
 </table>
 
-<h2>2. How We Use Your Information</h2>
+<h2><span class="n">2.</span> How We Use Your Information</h2>
 <ul>
   <li>To operate, maintain, and improve the Game and its features;</li>
   <li>To save, sync, and restore your account and progress;</li>
@@ -55,60 +155,70 @@ rewarded ads. We do <strong>not</strong> ask for your real name, phone number, o
   <li>To comply with legal obligations.</li>
 </ul>
 
-<h2>3. Third-Party Services</h2>
+<h2><span class="n">3.</span> Third-Party Services</h2>
 <p>The Game uses the following third-party services, which may collect and process data under their own
 privacy policies:</p>
 <table>
-  <tr><th>Service</th><th>Purpose</th><th>Privacy Policy</th></tr>
+  <thead><tr><th>Service</th><th>Purpose</th><th>Privacy Policy</th></tr></thead>
+  <tbody>
   <tr><td>Google Play Services, Google Play Games, Google Play Billing, Firebase Authentication (Google LLC) &mdash; on Android</td><td>Sign-in, account, purchases, platform services</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
   <tr><td>Apple App Store, and Sign in with Apple / Game Center where offered (Apple Inc.) &mdash; on iOS</td><td>Sign-in, purchases, platform services</td><td><a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></td></tr>
-  <tr><td>AppLovin MAX (AppLovin Corp.)</td><td>Rewarded advertising and ad mediation</td><td><a href="https://www.applovin.com/privacy/">applovin.com/privacy</a></td></tr>
+  <tr><td><strong>Google AdMob</strong> (Google LLC)</td><td>Rewarded advertising, ad serving, and ad measurement</td><td><a href="https://policies.google.com/technologies/partner-sites">How Google uses data</a> &middot; <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  </tbody>
 </table>
 <p>Our game servers are operated by or on behalf of Bublue Studio to store your account and progress.
 We do not sell your personal information.</p>
 
-<h2>4. Advertising</h2>
+<h2><span class="n">4.</span> Advertising</h2>
 <p>The Game shows <strong>rewarded ads</strong> that you choose to watch in exchange for in-game rewards.
-Our ad partner may use your advertising identifier and device data to serve and measure ads. You can
-limit or reset ad personalization at any time in your device settings
-(Android: <em>Settings &rarr; Google &rarr; Ads</em>; iOS: <em>Settings &rarr; Privacy &amp; Security &rarr; Tracking</em>).
-On iOS, we ask permission through Apple's <strong>App Tracking Transparency</strong> prompt before accessing
-your advertising identifier. Where required by law, we request consent for personalized advertising before
-ads are shown.</p>
+We use <strong>Google AdMob</strong> (provided by Google LLC) to serve these ads. Google and its ad
+partners may use your advertising identifier and device data to serve and measure ads; you can read how
+Google uses this information at
+<a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.
+You can limit or reset ad personalization at any time in your device settings
+(Android: <em>Settings &rarr; Google &rarr; Ads</em>; iOS: <em>Settings &rarr; Privacy &amp; Security &rarr; Tracking</em>).</p>
+<p>Where required by law &mdash; for example, for users in the European Economic Area, the United Kingdom,
+and Switzerland &mdash; we present a consent message using Google's <strong>User Messaging Platform (UMP)</strong>
+before showing personalized ads, and we honor your choice. On iOS, we also ask permission through Apple's
+<strong>App Tracking Transparency</strong> prompt before accessing your advertising identifier; if you decline,
+you may still see non-personalized ads.</p>
 
-<h2>5. Children's Privacy</h2>
-<p>The Game is not directed to children under the age of 13 (or the minimum age required in your
-country). We do not knowingly collect personal information from children. If you believe a child has
-provided us personal information, contact us and we will delete it.</p>
+<h2><span class="n">5.</span> Children's Privacy</h2>
+<p>The Game is <strong>not directed to children</strong> under the age of 13 (or the minimum age required in
+your country), and its Google Play target-audience and content rating are set accordingly. We do not
+knowingly collect personal information from children, and ads are served with these settings applied. If
+you believe a child has provided us personal information, contact us and we will delete it.</p>
 
-<h2>6. Data Retention</h2>
+<h2><span class="n">6.</span> Data Retention</h2>
 <p>We keep your account and progress data for as long as your account exists or as needed to provide the
 Game. We may retain limited records longer where required for legal, security, or fraud-prevention
 purposes. When data is no longer needed, we delete or anonymize it. Pre-registration emails are kept
 only until launch and are deleted within a reasonable period afterward, or sooner if you ask us to
 remove them.</p>
 
-<h2>7. Your Rights &amp; Account Deletion</h2>
+<h2><span class="n">7.</span> Your Rights &amp; Account Deletion</h2>
 <p>Depending on your location, you may have the right to access, correct, or delete your personal data,
 or to object to or restrict certain processing. To exercise these rights — including
 <strong>requesting deletion of your account and associated data</strong> — email us at the address in
 Section&nbsp;10. We will verify your request and respond within the time required by applicable law.</p>
 
-<h2>8. Data Security &amp; International Transfers</h2>
+<h2><span class="n">8.</span> Data Security &amp; International Transfers</h2>
 <p>We use reasonable technical and organizational measures to protect your data. No method of transmission
 or storage is completely secure. Your data may be processed in countries other than your own, including
 where our service providers operate; where required, we use appropriate safeguards for such transfers.</p>
 
-<h2>9. Changes to This Policy</h2>
+<h2><span class="n">9.</span> Changes to This Policy</h2>
 <p>We may update this Privacy Policy from time to time. Material changes will be reflected by updating the
 "Last updated" date above and, where appropriate, through an in-game notice.</p>
 
-<h2>10. Contact Us</h2>
+<h2><span class="n">10.</span> Contact Us</h2>
 <p>If you have questions or requests regarding this Privacy Policy or your data, contact:</p>
 <p><strong>Bublue Studio</strong><br>
 <!-- Once SSM-registered, add on its own line here: SSM Registration No.: XXXXXXXX-X<br> -->
 Malaysia<br>
 Email: <a href="mailto:support@bubluestudio.com">support@bubluestudio.com</a></p>
+
+<p class="footer">© 2026 Bublue Studio · <a href="./index.html">beyondgod.bubluestudio.com</a> · <a href="./support.html">Support</a></p>
 
 </body>
 </html>
