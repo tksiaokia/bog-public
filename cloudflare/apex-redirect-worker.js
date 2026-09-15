@@ -15,7 +15,7 @@ export default {
 
     if (url.pathname === "/app-ads.txt") {
       return new Response(
-        "google.com, pub-9427505016327818, DIRECT, f08c47fec0942fa0\n",
+        "google.com, pub-8679622237935422, DIRECT, f08c47fec0942fa0\n",
         { headers: { "content-type": "text/plain; charset=utf-8" } }
       );
     }
