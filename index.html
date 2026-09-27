@@ -256,6 +256,15 @@ section{position:relative}
 .cta .icon-lg{width:104px;height:104px;border-radius:26px;margin:0 auto 26px;
   box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 0 1px var(--line)}
 .cta .badges{justify-content:center;margin-top:10px}
+.social-label{margin:30px 0 12px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.social-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);font-weight:600;font-size:15px;
+  transition:transform .2s,border-color .2s,background .2s}
+.social-btn svg{width:20px;height:20px;fill:currentColor}
+.social-btn.fb:hover{border-color:#1877f2;background:rgba(24,119,242,.16)}
+.social-btn.dc:hover{border-color:#5865f2;background:rgba(88,101,242,.16)}
+.social-btn:hover{transform:translateY(-2px)}
 .gnote{max-width:52ch;margin:34px auto 0;color:var(--muted);font-size:13.5px;line-height:1.6;
   border-top:1px solid var(--line);padding-top:22px}
 
@@ -562,6 +571,11 @@ footer{background:#07060c;border-top:1px solid var(--line)}
         <span class="txt"><small data-i18n="badge.android.top">Get it on</small><b data-i18n="badge.android.name">Google Play</b></span>
       </a>
     </div>
+    <p class="social-label reveal" data-delay="2" data-i18n="dl.community">Join the community</p>
+    <div class="socials reveal" data-delay="2">
+      <a class="social-btn fb" href="https://www.facebook.com/profile.php?id=61592783147811" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg><span>Facebook</span></a>
+      <a class="social-btn dc" href="https://discord.gg/KQUaCtsh9" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M19.3 5.3A16.6 16.6 0 0 0 15.2 4l-.5 1a15.4 15.4 0 0 0-5.4 0l-.5-1a16.5 16.5 0 0 0-4.1 1.3C2.1 9.2 1.4 13 1.8 16.7a16.7 16.7 0 0 0 5 2.5l1.1-1.7c-.6-.2-1.2-.5-1.7-.8l.4-.3a11.9 11.9 0 0 0 10.2 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.7a16.6 16.6 0 0 0 5-2.5c.5-4.3-.8-8.1-2.3-11.4zM8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg><span>Discord</span></a>
+    </div>
     <p class="gnote" data-i18n="dl.gnote">Sign in with your Google account is offered so you can save your progress and play across devices. We only use your account to identify you and sync your game data — see our Privacy Policy for details.</p>
   </div>
 </section>
@@ -579,6 +593,8 @@ footer{background:#07060c;border-top:1px solid var(--line)}
       <a href="#download" data-i18n="nav.download">Download</a>
       <a href="./support.html" data-i18n="foot.support">Support</a>
       <a href="./privacy-policy.html" data-i18n="foot.privacy">Privacy Policy</a>
+      <a href="https://www.facebook.com/profile.php?id=61592783147811" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://discord.gg/KQUaCtsh9" target="_blank" rel="noopener">Discord</a>
       <a href="mailto:support@bubluestudio.com">support@bubluestudio.com</a>
     </nav>
   </div>
@@ -627,7 +643,7 @@ const I18N={
  "world.kicker3":"The great trials","world.pillars.t":"72 God Pillars","world.pillars.d":"Face the seventy-two trials of the pillars, defeat their guardians, and claim divine relics of unmatched power.",
  "dl.kicker":"Free to play","dl.title":"Begin your ascension","dl.body":"Join the war of the gods on iOS and Android. Free to download — summon your first legends today.",
  "dl.gnote":"Sign in with your Google account is offered so you can save your progress and play across devices. We only use your account to identify you and sync your game data — see our Privacy Policy for details.",
- "foot.pub":"Published by Bublue Studio","foot.support":"Support","foot.privacy":"Privacy Policy",
+ "dl.community":"Join the community","foot.pub":"Published by Bublue Studio","foot.support":"Support","foot.privacy":"Privacy Policy",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension and all related marks are trademarks of Bublue Studio.",
  "toast.soon":"Coming soon — stay tuned!",
  "prereg.cta":"Pre-register","prereg.count_suffix":"summoners pre-registered","prereg.next_prefix":"Next reward at",
@@ -666,7 +682,7 @@ const I18N={
  "world.kicker3":"伟大试炼","world.pillars.t":"七十二神柱","world.pillars.d":"直面七十二神柱的试炼，击败守护者，夺取无与伦比的神圣遗物。",
  "dl.kicker":"免费游玩","dl.title":"开启你的飞升之路","dl.body":"在 iOS 与 Android 上加入诸神之战。免费下载——今日即刻召唤你的首位传奇。",
  "dl.gnote":"提供 Google 账号登录，方便你保存进度并跨设备游玩。我们仅用你的账号来识别身份并同步游戏数据——详情请见隐私政策。",
- "foot.pub":"由 Bublue Studio 发行","foot.support":"支持","foot.privacy":"隐私政策",
+ "dl.community":"加入社区","foot.pub":"由 Bublue Studio 发行","foot.support":"支持","foot.privacy":"隐私政策",
  "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相关标志均为 Bublue Studio 的商标。",
  "prereg.cta":"预约","prereg.count_suffix":"位召唤师已预约","prereg.next_prefix":"下个奖励解锁于",
  "prereg.title":"预约 iOS 版本","prereg.sub":"iOS 版本即将推出——预约即可获得开服奖励，上线第一时间邮件通知你。",
@@ -705,7 +721,7 @@ const I18N={
  "world.kicker3":"偉大試煉","world.pillars.t":"七十二神柱","world.pillars.d":"直面七十二神柱的試煉，擊敗守護者，奪取無與倫比的神聖遺物。",
  "dl.kicker":"免費遊玩","dl.title":"開啟你的飛昇之路","dl.body":"在 iOS 與 Android 上加入諸神之戰。免費下載——今日即刻召喚你的首位傳奇。",
  "dl.gnote":"提供 Google 帳號登入，方便你儲存進度並跨裝置遊玩。我們僅用你的帳號來識別身分並同步遊戲資料——詳情請見隱私政策。",
- "foot.pub":"由 Bublue Studio 發行","foot.support":"支援","foot.privacy":"隱私政策",
+ "dl.community":"加入社群","foot.pub":"由 Bublue Studio 發行","foot.support":"支援","foot.privacy":"隱私政策",
  "foot.copy":"© 2026 Bublue Studio。Beyond God: Ascension 及一切相關標誌均為 Bublue Studio 的商標。",
  "prereg.cta":"預約","prereg.count_suffix":"位召喚師已預約","prereg.next_prefix":"下個獎勵解鎖於",
  "prereg.title":"預約 iOS 版本","prereg.sub":"iOS 版本即將推出——預約即可獲得開服獎勵，上線第一時間以電子郵件通知你。",
@@ -744,7 +760,7 @@ const I18N={
  "world.kicker3":"위대한 시련","world.pillars.t":"72신주","world.pillars.d":"일흔두 신주의 시련에 맞서 수호자를 물리치고, 비할 데 없는 신성한 유물을 손에 넣으세요.",
  "dl.kicker":"무료 플레이","dl.title":"승천을 시작하세요","dl.body":"iOS와 Android에서 신들의 전쟁에 참여하세요. 무료 다운로드—오늘 첫 전설을 소환하세요.",
  "dl.gnote":"진행 상황을 저장하고 여러 기기에서 플레이할 수 있도록 Google 계정 로그인을 제공합니다. 계정은 본인 식별과 게임 데이터 동기화에만 사용됩니다—자세한 내용은 개인정보 처리방침을 참고하세요.",
- "foot.pub":"Bublue Studio 배급","foot.support":"고객지원","foot.privacy":"개인정보 처리방침",
+ "dl.community":"커뮤니티 참여하기","foot.pub":"Bublue Studio 배급","foot.support":"고객지원","foot.privacy":"개인정보 처리방침",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension 및 관련 상표는 Bublue Studio의 상표입니다.",
  "prereg.cta":"사전예약","prereg.count_suffix":"명의 소환사가 사전예약했어요","prereg.next_prefix":"다음 보상 해금까지",
  "prereg.title":"iOS 사전예약","prereg.sub":"iOS 버전이 곧 출시됩니다 — 사전예약하면 출시 보상을 받고, 출시되는 즉시 이메일로 알려드립니다.",
@@ -783,7 +799,7 @@ const I18N={
  "world.kicker3":"偉大なる試練","world.pillars.t":"72の神柱","world.pillars.d":"72の神柱の試練に挑み、守護者を打ち倒し、比類なき神聖な遺物を勝ち取ろう。",
  "dl.kicker":"基本プレイ無料","dl.title":"昇華への一歩を","dl.body":"iOSとAndroidで神々の戦いに参加。無料ダウンロード――今日、最初の伝説を召喚しよう。",
  "dl.gnote":"進行状況を保存し複数の端末でプレイできるよう、Googleアカウントでのログインを提供しています。アカウントは本人確認とゲームデータの同期にのみ使用します――詳細はプライバシーポリシーをご覧ください。",
- "foot.pub":"発行：Bublue Studio","foot.support":"サポート","foot.privacy":"プライバシーポリシー",
+ "dl.community":"コミュニティに参加","foot.pub":"発行：Bublue Studio","foot.support":"サポート","foot.privacy":"プライバシーポリシー",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension および関連するマークは Bublue Studio の商標です。",
  "prereg.cta":"事前登録","prereg.count_suffix":"人の召喚士が事前登録","prereg.next_prefix":"次の報酬解放まで",
  "prereg.title":"iOS版を事前登録","prereg.sub":"iOS版は近日配信予定——事前登録でリリース報酬を受け取れます。配信開始と同時にメールでお知らせします。",
@@ -822,7 +838,7 @@ const I18N={
  "world.kicker3":"บททดสอบอันยิ่งใหญ่","world.pillars.t":"72 เสาเทพ","world.pillars.d":"เผชิญบททดสอบทั้งเจ็ดสิบสองเสา ปราบผู้พิทักษ์ และคว้าเรลิกศักดิ์สิทธิ์ที่หาใดเทียบ",
  "dl.kicker":"เล่นฟรี","dl.title":"เริ่มการก้าวสู่เทพของคุณ","dl.body":"ร่วมสงครามแห่งทวยเทพบน iOS และ Android ดาวน์โหลดฟรี—อัญเชิญตำนานแรกของคุณวันนี้",
  "dl.gnote":"มีการเข้าสู่ระบบด้วยบัญชี Google เพื่อให้คุณบันทึกความคืบหน้าและเล่นข้ามอุปกรณ์ได้ เราใช้บัญชีของคุณเพียงเพื่อระบุตัวตนและซิงค์ข้อมูลเกมเท่านั้น—ดูรายละเอียดในนโยบายความเป็นส่วนตัว",
- "foot.pub":"เผยแพร่โดย Bublue Studio","foot.support":"ฝ่ายสนับสนุน","foot.privacy":"นโยบายความเป็นส่วนตัว",
+ "dl.community":"เข้าร่วมชุมชน","foot.pub":"เผยแพร่โดย Bublue Studio","foot.support":"ฝ่ายสนับสนุน","foot.privacy":"นโยบายความเป็นส่วนตัว",
  "foot.copy":"© 2026 Bublue Studio สงวนลิขสิทธิ์ Beyond God: Ascension และเครื่องหมายที่เกี่ยวข้องเป็นเครื่องหมายการค้าของ Bublue Studio",
  "prereg.cta":"ลงทะเบียนล่วงหน้า","prereg.count_suffix":"ผู้อัญเชิญลงทะเบียนแล้ว","prereg.next_prefix":"รางวัลถัดไปปลดล็อกที่",
  "prereg.title":"ลงทะเบียนล่วงหน้าสำหรับ iOS","prereg.sub":"เวอร์ชัน iOS กำลังจะมาเร็ว ๆ นี้ — ลงทะเบียนล่วงหน้าเพื่อรับรางวัลเปิดตัว และเราจะแจ้งทางอีเมลทันทีที่เปิดตัว",
@@ -861,7 +877,7 @@ const I18N={
  "world.kicker3":"Ujian agung","world.pillars.t":"72 Pilar Dewa","world.pillars.d":"Hadapi tujuh puluh dua ujian pilar, kalahkan penjaganya, dan rebut relik ilahi berkekuatan tiada tara.",
  "dl.kicker":"Gratis dimainkan","dl.title":"Mulai kebangkitanmu","dl.body":"Bergabunglah dalam perang para dewa di iOS dan Android. Gratis diunduh — panggil legenda pertamamu hari ini.",
  "dl.gnote":"Masuk dengan akun Google disediakan agar kamu bisa menyimpan progres dan bermain lintas perangkat. Kami hanya menggunakan akunmu untuk mengenalimu dan menyinkronkan data permainan — lihat Kebijakan Privasi kami untuk detailnya.",
- "foot.pub":"Diterbitkan oleh Bublue Studio","foot.support":"Dukungan","foot.privacy":"Kebijakan Privasi",
+ "dl.community":"Gabung komunitas","foot.pub":"Diterbitkan oleh Bublue Studio","foot.support":"Dukungan","foot.privacy":"Kebijakan Privasi",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension dan semua merek terkait adalah merek dagang Bublue Studio.",
  "prereg.cta":"Pra-registrasi","prereg.count_suffix":"summoner telah mendaftar","prereg.next_prefix":"Hadiah berikutnya di",
  "prereg.title":"Pra-registrasi untuk iOS","prereg.sub":"Versi iOS segera hadir — pra-registrasi untuk mendapatkan hadiah peluncuran, dan kami akan mengirim email begitu rilis.",
@@ -900,7 +916,7 @@ const I18N={
  "world.kicker3":"Những thử thách vĩ đại","world.pillars.t":"72 Trụ Thần","world.pillars.d":"Đối mặt bảy mươi hai thử thách của các trụ thần, đánh bại người canh giữ và giành di vật thần thánh có sức mạnh vô song.",
  "dl.kicker":"Chơi miễn phí","dl.title":"Bắt đầu hành trình thăng thiên","dl.body":"Tham gia cuộc chiến chư thần trên iOS và Android. Tải miễn phí — triệu hồi huyền thoại đầu tiên của bạn hôm nay.",
  "dl.gnote":"Chúng tôi cung cấp đăng nhập bằng tài khoản Google để bạn lưu tiến trình và chơi trên nhiều thiết bị. Chúng tôi chỉ dùng tài khoản của bạn để nhận diện bạn và đồng bộ dữ liệu trò chơi — xem Chính Sách Bảo Mật để biết chi tiết.",
- "foot.pub":"Phát hành bởi Bublue Studio","foot.support":"Hỗ Trợ","foot.privacy":"Chính Sách Bảo Mật",
+ "dl.community":"Tham gia cộng đồng","foot.pub":"Phát hành bởi Bublue Studio","foot.support":"Hỗ Trợ","foot.privacy":"Chính Sách Bảo Mật",
  "foot.copy":"© 2026 Bublue Studio. Beyond God: Ascension và mọi nhãn hiệu liên quan là thương hiệu của Bublue Studio.",
  "prereg.cta":"Đăng ký trước","prereg.count_suffix":"summoner đã đăng ký","prereg.next_prefix":"Phần thưởng tiếp theo mở tại",
  "prereg.title":"Đăng ký trước cho iOS","prereg.sub":"Phiên bản iOS sắp ra mắt — đăng ký trước để nhận phần thưởng ra mắt, và chúng tôi sẽ gửi email ngay khi phát hành.",
